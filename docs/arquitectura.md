@@ -1,3 +1,5 @@
+> Estado operativo actualizado: consultar [HOW-TO-GUIDE.md](HOW-TO-GUIDE.md). Este documento describe arquitectura objetivo; los pendientes historicos no reflejan la publicacion del 1 de octubre de 2026.
+
 # Arquitectura objetivo
 
 Monolito modular: Next.js/TypeScript, PostgreSQL en Supabase, Auth, Storage y Realtime. Una fuente de verdad en servidor. WhatsApp es transporte manual de mensajes, no almacenamiento de estado ni prueba de recepción.

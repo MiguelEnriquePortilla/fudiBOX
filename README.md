@@ -1,6 +1,11 @@
 # fudiBOX
 Marketplace local para Jojutla y alrededores. Primer negocio: Chicken Chicanito.
 
+## Manual de uso y pruebas
+[Guia por roles, altas y requisitos del piloto](docs/HOW-TO-GUIDE.md).
+
+Sitio publicado: https://fudibox.vercel.app. Google, cuenta, panel y carrito comprobados en produccion el 1 de octubre de 2026. Recepcion de pedidos cerrada.
+
 ## Estado
 Aplicación principal en C:/Users/hp/Desktop/FUDIGPT/fudiBOX. La carpeta Documents/ChatGPT/fudiBOX es histórica.
 
@@ -10,7 +15,7 @@ Aplicación principal en C:/Users/hp/Desktop/FUDIGPT/fudiBOX. La carpeta Documen
 - Solicitud, reserva, confirmación y cancelación transaccionales implementadas.
 - Recepción cerrada: faltan cotización/aceptación, vencimientos, entrega/códigos y cierre del pedido.
 - Compilación correcta, cinco pruebas HTTP y doce pruebas SQL con rollback superadas.
-- Sin despliegue ni pedidos operativos creados.
+- Publicado en Vercel desde GitHub (main); sin pedidos operativos creados.
 
 Leer CONTINUIDAD/HANDOFF_ACTUAL.md antes de continuar.
 

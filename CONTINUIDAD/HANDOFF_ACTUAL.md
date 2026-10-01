@@ -1,3 +1,19 @@
+# Estado vigente: publicado y guia operativa - 1 octubre 2026
+
+Prevalece sobre los antecedentes locales siguientes.
+- Git inicializado en la carpeta principal Desktop/FUDIGPT/fudiBOX; origin https://github.com/MiguelEnriquePortilla/fudiBOX.git. Primer commit main: 82dc1e0. .env.local excluido.
+- Vercel: proyecto fudibox del equipo development-d767d622, main, primer despliegue Ready Production. URL https://fudibox.vercel.app.
+- Variables publicas de Supabase configuradas en Production por Miguel. Preview no configurado en esta sesion.
+- Supabase Site URL cambiado a https://fudibox.vercel.app; allowlist agrega /auth/callback de produccion y conserva localhost.
+- Miguel verifico con capturas: Google retorna a /cuenta con sesion verificada, acceso al panel, 45 productos, menu y carrito con arroz blanco/adobo 3 chiles, $209 + $10 = $219.
+- Dominio propio aplazado por el usuario; no continuar compra. La URL Vercel sirve para demostraciones.
+- Creada docs/HOW-TO-GUIDE.md: manual para cliente, restaurante, repa, coordinacion y desarrollador; estados reales, altas, requisitos y guion del piloto.
+- No hay pantalla de alta de repas/restaurantes. drivers es contacto sin user_id. Catalogo y panel hardcodean chicken-chicanito; otra fila de negocio no basta.
+- Recepcion sigue cerrada. No se implementaron cotizacion, vencimiento, asignacion, listo, codigos, cierre ni liquidacion por crear esta guia.
+- Siguiente trabajo: completar recorrido operativo y criterios de la seccion 9 del manual. Definir participantes, coordinador, cobertura y telefonos por canal privado; no guardar datos personales de altas en docs.
+
+---
+
 # Estado vigente · catálogo y panel Chicanito · 30 septiembre 2026
 
 Este apartado sustituye los pendientes de catálogo y acceso al negocio de los antecedentes.
