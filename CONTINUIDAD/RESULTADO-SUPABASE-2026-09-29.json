@@ -1,0 +1,38 @@
+﻿[
+    {
+        "tablename":  "businesses",
+        "rls_enabled":  true
+    },
+    {
+        "tablename":  "drivers",
+        "rls_enabled":  true
+    },
+    {
+        "tablename":  "inventory_reservations",
+        "rls_enabled":  true
+    },
+    {
+        "tablename":  "ledger_entries",
+        "rls_enabled":  true
+    },
+    {
+        "tablename":  "order_items",
+        "rls_enabled":  true
+    },
+    {
+        "tablename":  "orders",
+        "rls_enabled":  true
+    },
+    {
+        "tablename":  "products",
+        "rls_enabled":  true
+    },
+    {
+        "tablename":  "profiles",
+        "rls_enabled":  true
+    },
+    {
+        "tablename":  "settlements",
+        "rls_enabled":  true
+    }
+]
