@@ -20,6 +20,9 @@ export function Catalog({business,products,signedIn}:{business:Business;products
  const [pending,startTransition]=useTransition();
  const [method,setMethod]=useState("pickup");
  const dialog=useRef<HTMLDialogElement>(null);
+ const cartDialog=useRef<HTMLDialogElement>(null);
+ const [cartPulse,setCartPulse]=useState(0);
+ const itemCount=cart.reduce((sum,line)=>sum+line.quantity,0);
  const productMap=new Map(products.map(p=>[p.id,p]));
  const categories=["Todos",...new Set(products.map(p=>p.category))];
  useEffect(()=>{
@@ -44,7 +47,7 @@ export function Catalog({business,products,signedIn}:{business:Business;products
   const key=selected.id+JSON.stringify(choices);
   const found=cart.find(l=>l.key===key);
   changeCart(found?cart.map(l=>l.key===key?{...l,quantity:l.quantity+quantity}:l):[...cart,{key,product_id:selected.id,quantity,choices}]);
-  setNotice("Agregado a tu carrito.");dialog.current?.close();setSelected(null);
+  setCartPulse(n=>n+1);setNotice("Agregado. Tu carrito tiene "+(itemCount+quantity)+" productos.");dialog.current?.close();setSelected(null);
  }
  function send(form:FormData){
   if(!business.accepting_orders||pending)return;
@@ -60,6 +63,7 @@ export function Catalog({business,products,signedIn}:{business:Business;products
   });
  }
  return <section className="menu-page">
+  <button type="button" className="cart-launcher" aria-haspopup="dialog" aria-label={"Abrir carrito, "+itemCount+" productos"} onClick={()=>cartDialog.current?.showModal()}><span key={cartPulse} className={cartPulse?"cart-pulse":""}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M2 3h3l3 13h11l3-9H6"/><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg><strong>Carrito</strong><b className="cart-count">{itemCount}</b></span></button>
   <div className="merchant-heading"><img src="/assets/chicanito-logo.jpg" alt="Chicken Chicanito"/><div><span className="eyebrow">SABOR DE POR ACÁ</span><h1>Chicken Chicanito</h1><p>{business.address}</p>{business.map_url&&<a className="text-link" href={business.map_url} target="_blank" rel="noreferrer">Ver punto de recogida ↗</a>}</div></div>
   {!business.accepting_orders&&<div className="menu-notice">Estamos preparando la apertura en fudiBOX. Puedes conocer el menú y armar tu carrito; todavía no se enviarán pedidos al negocio.</div>}
   <div className="menu-tabs" aria-label="Categorías">{categories.map(c=><button key={c} className={category===c?"selected":""} onClick={()=>setCategory(c)} aria-pressed={category===c}>{c}</button>)}</div>
@@ -69,7 +73,7 @@ export function Catalog({business,products,signedIn}:{business:Business;products
     {p.image_path?<img loading="lazy" src={p.image_path} alt={p.name}/>:<div className="product-placeholder" aria-hidden="true">{p.category==="Salsas"?"🌶":"🍽"}</div>}
     <div className="product-body"><span className="eyebrow">{p.category}</span><h2>{p.name}</h2><p>{p.description}</p><div className="product-bottom"><strong>{money(p.price_cents)}</strong><button disabled={!p.available||!loaded||pending} onClick={()=>openProduct(p)} aria-label={"Elegir "+p.name}>{p.available?"Elegir +":"Agotado"}</button></div></div>
    </article>)}
-  </div><aside className="cart-panel"><h2>Tu carrito</h2>
+  </div></div><dialog ref={cartDialog} className="cart-drawer" aria-labelledby="cart-title"><button type="button" className="dialog-close" aria-label="Cerrar carrito" onClick={()=>cartDialog.current?.close()}>×</button><div className="cart-panel"><h2 id="cart-title">Tu carrito</h2>
    {!cart.length?<p className="fine">Elige un paquete y sus opciones para empezar.</p>:<>
     <ul className="cart-lines">{cart.map(l=>{const p=productMap.get(l.product_id)!;return <li key={l.key}><strong>{l.quantity} × {p.name}</strong><p>{Object.entries(l.choices).map(([k,v])=>k+": "+String(v)).join(" · ")}</p><div><span>{money(p.price_cents*l.quantity)}</span><button type="button" disabled={pending} onClick={()=>changeCart(cart.filter(x=>x.key!==l.key))} aria-label={"Quitar "+p.name}>Quitar</button></div></li>})}</ul>
     <div className="total-row"><span>Productos</span><strong>{money(subtotal)}</strong></div>
@@ -80,14 +84,14 @@ export function Catalog({business,products,signedIn}:{business:Business;products
      <label>Entrega<select value={method} onChange={e=>setMethod(e.target.value)} disabled={pending}><option value="pickup">Recoger en el negocio</option><option value="delivery">A domicilio · envío por cotizar</option></select></label>
      {method==="delivery"&&<p className="fine">Aceptarás productos + $10 + envío después de recibir la cotización. El negocio aún no preparará tu pedido.</p>}
      <label>Tu nombre<input name="name" required maxLength={80} autoComplete="name" disabled={pending}/></label>
-     <label>Teléfono con código de país<input name="phone" required type="tel" pattern="[+0-9 ()-]{10,20}" maxLength={20} autoComplete="tel" placeholder="+52…" disabled={pending}/></label>
+     <label>Tu teléfono<input name="phone" required type="tel" inputMode="numeric" pattern="[0-9]{10}" minLength={10} maxLength={10} autoComplete="tel-national" placeholder="7341234567" aria-describedby="phone-help" title="Escribe los 10 dígitos de tu número, incluida la clave de la ciudad." disabled={pending}/></label><p id="phone-help" className="fine">10 dígitos, incluida la clave de tu ciudad. Nosotros agregamos +52.</p>
      {method==="delivery"&&<label>Dirección y referencias<textarea name="address" required minLength={5} maxLength={500} disabled={pending}/></label>}
      <label>Notas para el negocio<textarea name="notes" maxLength={500} disabled={pending}/></label>
      {error&&<p role="alert" className="alert">{error}</p>}
      <button className="button" disabled={pending||!business.accepting_orders||!cart.length}>{pending?"Guardando…":business.accepting_orders?"Solicitar pedido":"Pedidos aún no habilitados"}</button>
     </form>}
    </>}
-  </aside></div>
+  </div></dialog>
   <dialog ref={dialog} className="product-dialog" onCancel={()=>setSelected(null)}>
    {selected&&<><button className="dialog-close" aria-label="Cerrar opciones" onClick={()=>{dialog.current?.close();setSelected(null);}}>×</button><span className="eyebrow">{selected.category}</span><h2>{selected.name}</h2><p>{selected.description}</p><strong>{money(selected.price_cents)}</strong>
     {selected.option_groups.map(g=><fieldset key={g.name}><legend>{g.name} · elige una opción</legend><div className="choice-grid">{g.choices.map(value=><label key={value}><input type="radio" name={g.name} value={value} checked={choices[g.name]===value} onChange={()=>setChoices({...choices,[g.name]:value})}/>{value}</label>)}</div></fieldset>)}

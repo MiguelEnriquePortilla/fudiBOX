@@ -62,8 +62,8 @@ La estructura de algunas funciones existe en Supabase, pero eso no equivale a un
 ### Hoy: conocer el menú y probar el carrito
 1. Abrir /chicanito.
 2. Elegir un producto; completar arroz, adobo u otras opciones obligatorias.
-3. Elegir cantidad y agregar.
-4. Revisar producto, opciones, subtotal y servicio. El cargo de $10 aparece una vez por pedido.
+3. Elegir cantidad y agregar. El boton Carrito permanece arriba a la derecha, muestra la cantidad y anima cada agregado. Pulsarlo abre el panel del pedido.
+4. En el formulario escribir 10 digitos de telefono mexicano, incluyendo lada; el servidor agrega +52. Revisar producto, opciones, subtotal y servicio. El cargo de $10 aparece una vez por pedido.
 5. Elegir recoger o domicilio para revisar el formulario. Para domicilio, el envío aún requiere cotización.
 6. Iniciar sesión desde /acceso para consultar /cuenta.
 7. No esperar confirmación del restaurante: mientras siga cerrado, el carrito no envía pedidos.

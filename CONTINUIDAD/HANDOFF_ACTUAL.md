@@ -1,3 +1,12 @@
+# Ajuste de carrito y telefono - 1 octubre 2026
+
+- Boton de carrito fijo arriba a la derecha, contador por unidades, animacion al agregar respetando movimiento reducido, panel lateral modal accesible.
+- Telefono nacional de 10 digitos; validacion en cliente y servidor; +52 agregado en submitOrder.
+- Compilacion y cinco pruebas HTTP correctas; agregado, contador, panel y total comprobados en navegador local.
+- Recepcion permanece cerrada: el usuario pide habilitar y conocer requisitos. Faltan listo, entrega validada y cierre; domicilio requiere cotizacion, vencimiento y asignacion.
+
+---
+
 # Estado vigente: publicado y guia operativa - 1 octubre 2026
 
 Prevalece sobre los antecedentes locales siguientes.
