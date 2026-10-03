@@ -1,5 +1,9 @@
 import Link from "next/link";
-export default function Home() {
+import { serverClient } from "@/lib/supabase/server";
+export const dynamic="force-dynamic";
+export default async function Home() {
+ const client=await serverClient(); const {data:businesses,error}=await client.from("businesses").select("id,name,slug,address,logo_path").eq("status","approved").order("name");
+ if(error)throw new Error("No se pudieron cargar los restaurantes.");
   return <>
     <section className="hero">
       <div className="hero-copy">
@@ -13,7 +17,7 @@ export default function Home() {
     </section>
     <section className="discovery">
       <div><span className="eyebrow">SABOR DE POR ACÁ</span><h2>Acá se come machín.</h2></div>
-      <article className="merchant"><img src="/assets/chicanito-logo.jpg" alt="Chicken Chicanito" /><div><span className="badge">Primer negocio confirmado</span><h3>Chicken Chicanito</h3><p>Consulta los paquetes, complementos y salsas. Estamos preparando la apertura de pedidos en fudiBOX.</p><Link className="text-link" href="/chicanito">Ver menú y precios ↗</Link></div></article>
+      {(businesses||[]).map(b=><article className="merchant" key={b.id}>{b.logo_path&&<img src={b.logo_path} alt={b.name}/>}<div><span className="badge">Restaurante local</span><h3>{b.name}</h3><p>{b.address}</p><Link className="text-link" href={"/restaurantes/"+b.slug}>Ver menú y precios ↗</Link></div></article>)}
     </section>
   </>;
 }

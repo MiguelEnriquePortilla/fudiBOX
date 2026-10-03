@@ -10,13 +10,11 @@ export default async function Account({ searchParams }: { searchParams: Promise<
  const {data:{user},error:authError}=await client.auth.getUser();
  if(authError||!user)redirect("/acceso");
  const {error:pageError}=await searchParams;
- const [{data:orders,error},{data:businesses}]=await Promise.all([
- client.from("orders").select("id,status,created_at,total_cents,subtotal_cents,delivery_method,order_items(product_name,quantity,selections)").eq("customer_id",user.id).order("created_at",{ascending:false}).limit(20),
- client.rpc("my_businesses")]);
+ const {data:orders,error}=await
+ client.from("orders").select("id,status,created_at,total_cents,subtotal_cents,delivery_method,order_items(product_name,quantity,selections)").eq("customer_id",user.id).order("created_at",{ascending:false}).limit(20);
  const name=typeof user.user_metadata.full_name==="string"?user.user_metadata.full_name:"vecino";
  return <section className="account"><div className="account-heading"><div><span className="eyebrow">MI CUENTA</span><h1>¡Va que va, {name}!</h1><p>Ya entraste a fudiBOX con Google.</p></div><span className="badge">Sesión verificada</span></div>
  <div className="account-grid"><article className="card"><h2>Tu acceso</h2><p className="email">{user.email}</p><Link className="button" href="/chicanito">Ver menú de Chicanito</Link>
- {!!businesses?.length&&<p><Link className="text-link" href="/negocio">Abrir panel de Chicken Chicanito ↗</Link></p>}
  {pageError&&<p className="alert" role="alert">No se pudo completar la acción. Recarga y vuelve a intentar.</p>}
  <form action={signOut}><button className="button secondary">Cerrar sesión</button></form></article>
  <article className="card"><span className="eyebrow">AL TIRO CON TU PEDIDO</span><h2>Tus pedidos</h2>

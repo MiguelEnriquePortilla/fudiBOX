@@ -8,7 +8,8 @@ begin
  values('TEST rollback','test-'||gen_random_uuid(),'approved','Dirección ficticia solo prueba',18,-99,false) returning id into bid;
  insert into public.products(business_id,name,price_cents,available,track_stock,stock_units,option_groups)
  values(bid,'TEST producto',1000,true,true,3,'[{"name":"Adobo","choices":["BBQ"]}]') returning id into pid;
- insert into fudi_private.business_members(business_id,user_id,role,active) values(bid,uid,'owner',true);
+ -- Positive operations require the explicitly authorized operator account.
+ if not exists(select 1 from fudi_private.admins where user_id=uid) then raise exception 'Test requires authorized admin'; end if;
  payload:=jsonb_build_object('business_id',bid,'name','TEST','phone','+527340000000','delivery_method','pickup','address','','notes','','expected_subtotal',2000,'items',jsonb_build_array(jsonb_build_object('product_id',pid,'quantity',2,'choices',jsonb_build_object('Adobo','BBQ'))));
  perform set_config('request.jwt.claim.sub','',true);
  rejected:=false; begin perform public.create_customer_order(key,payload); exception when invalid_authorization_specification then rejected:=true; end;

@@ -7,12 +7,13 @@ export async function GET(request: NextRequest) {
     try {
       const client = await serverClient();
       const { error } = await client.auth.exchangeCodeForSession(code);
-      if (!error) path = "/cuenta";
+      if (!error) path = request.cookies.get("fudi-admin-return")?.value==="1"?"/admin":"/cuenta";
     } catch {
       // Never render or log OAuth codes, tokens, or provider error details.
     }
   }
   const response = NextResponse.redirect(new URL(path, request.nextUrl.origin));
+  response.cookies.delete("fudi-admin-return");
   response.headers.set("Cache-Control", "private, no-store, max-age=0");
   return response;
 }

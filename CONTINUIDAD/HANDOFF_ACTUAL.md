@@ -1,3 +1,18 @@
+# Operación centralizada — 2 octubre 2026
+
+Este estado prevalece sobre los antecedentes siguientes.
+- Cliente separado de /admin; /cuenta sin enlace de negocio y /negocio redirige al administrador.
+- Miguel autorizado explícitamente y dado de alta en fudi_private.admins. No otorgar acceso por business_members.
+- /admin incluye restaurantes, menús, contactos de repas y atención inicial de pedidos. Sin apps para restaurantes/repas. WhatsApp manual, sin mensajes enviados ni asignación automática.
+- Restaurantes aprobados se listan en portada y tienen /restaurantes/[slug]. Editor básico no gestiona fotos/opciones/mapas. Guardar negocio cierra recepción en esta etapa.
+- Migración 202610010001_operator_console.sql aplicada remotamente; escrituras restringidas a administrador, lecturas sensibles RLS ajustadas. Prueba SQL con rollback: CRUD administrador, rechazo de duplicados, rechazo de usuario ajeno y RLS; cuatro resultados PASS. Sin fixtures persistentes.
+- Compilación y 10 pruebas HTTP superadas; panel autenticado comprobado localmente. Publicación pendiente de verificar al cerrar esta sesión.
+- Guía vigente docs/HOW-TO-GUIDE.md. Carrito superior con contador/animación y teléfono nacional de 10 dígitos incluidos.
+- Recepción sigue cerrada. Siguiente objetivo: completar listo/entrega/cierre para recogida; domicilio necesita además cotización, aceptación, vencimiento y asignación. No abrir sólo cambiando accepting_orders.
+- Dominio propio aplazado. Google continúa sujeto a configuración de usuarios de prueba. No crear cuentas de restaurantes/repas.
+
+---
+
 # Ajuste de carrito y telefono - 1 octubre 2026
 
 - Boton de carrito fijo arriba a la derecha, contador por unidades, animacion al agregar respetando movimiento reducido, panel lateral modal accesible.

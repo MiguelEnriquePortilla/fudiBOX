@@ -5,8 +5,9 @@ import { useEffect,useRef,useState,useTransition } from "react";
 import { Business,Product,money } from "@/lib/catalog";
 import { submitOrder } from "./actions";
 type CartLine={key:string;product_id:string;quantity:number;choices:Record<string,string>};
-const storageKey="fudibox-chicanito-cart-v1";
+
 export function Catalog({business,products,signedIn}:{business:Business;products:Product[];signedIn:boolean}){
+ const storageKey=business.slug==="chicken-chicanito"?"fudibox-chicanito-cart-v1":"fudibox-cart-"+business.id;
  const router=useRouter();
  const [category,setCategory]=useState("Todos");
  const [selected,setSelected]=useState<Product|null>(null);
@@ -35,8 +36,8 @@ export function Catalog({business,products,signedIn}:{business:Business;products
    } else setRequestKey(crypto.randomUUID());
   } catch {setRequestKey(crypto.randomUUID());}
   setLoaded(true);
- },[products]);
- useEffect(()=>{if(loaded) try {sessionStorage.setItem(storageKey,JSON.stringify({lines:cart,requestKey}));}catch{/* Cart remains usable without storage. */}},[cart,requestKey,loaded]);
+ },[products,storageKey]);
+ useEffect(()=>{if(loaded) try {sessionStorage.setItem(storageKey,JSON.stringify({lines:cart,requestKey}));}catch{/* Cart remains usable without storage. */}},[cart,requestKey,loaded,storageKey]);
  const subtotal=cart.reduce((sum,l)=>sum+(productMap.get(l.product_id)?.price_cents??0)*l.quantity,0);
  const missingOptions=selected?.option_groups.some(g=>!g.choices.includes(choices[g.name]));
  function openProduct(p:Product){setSelected(p);setChoices({});setQuantity(1);dialog.current?.showModal();}
@@ -64,7 +65,7 @@ export function Catalog({business,products,signedIn}:{business:Business;products
  }
  return <section className="menu-page">
   <button type="button" className="cart-launcher" aria-haspopup="dialog" aria-label={"Abrir carrito, "+itemCount+" productos"} onClick={()=>cartDialog.current?.showModal()}><span key={cartPulse} className={cartPulse?"cart-pulse":""}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M2 3h3l3 13h11l3-9H6"/><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg><strong>Carrito</strong><b className="cart-count">{itemCount}</b></span></button>
-  <div className="merchant-heading"><img src="/assets/chicanito-logo.jpg" alt="Chicken Chicanito"/><div><span className="eyebrow">SABOR DE POR ACÁ</span><h1>Chicken Chicanito</h1><p>{business.address}</p>{business.map_url&&<a className="text-link" href={business.map_url} target="_blank" rel="noreferrer">Ver punto de recogida ↗</a>}</div></div>
+  <div className="merchant-heading">{business.logo_path&&<img src={business.logo_path} alt={business.name}/>}<div><span className="eyebrow">SABOR DE POR ACÁ</span><h1>{business.name}</h1><p>{business.address}</p>{business.map_url&&<a className="text-link" href={business.map_url} target="_blank" rel="noreferrer">Ver punto de recogida ↗</a>}</div></div>
   {!business.accepting_orders&&<div className="menu-notice">Estamos preparando la apertura en fudiBOX. Puedes conocer el menú y armar tu carrito; todavía no se enviarán pedidos al negocio.</div>}
   <div className="menu-tabs" aria-label="Categorías">{categories.map(c=><button key={c} className={category===c?"selected":""} onClick={()=>setCategory(c)} aria-pressed={category===c}>{c}</button>)}</div>
   <p className="cart-notice" role="status">{notice}</p>

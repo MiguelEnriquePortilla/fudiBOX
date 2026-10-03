@@ -11,10 +11,10 @@ Aplicación principal en C:/Users/hp/Desktop/FUDIGPT/fudiBOX. La carpeta Documen
 
 - Google funciona con la cuenta de Miguel; sesión verificada en servidor y aislamiento por RLS.
 - Menú real de 45 productos/presentaciones en /chicanito, opciones y carrito.
-- Panel /negocio autorizado para Miguel, con disponibilidad y atención inicial de pedidos.
+- Panel central /admin para Miguel: restaurantes, menús, contactos de repas y atención inicial de pedidos. /negocio redirige a /admin.
 - Solicitud, reserva, confirmación y cancelación transaccionales implementadas.
 - Recepción cerrada: faltan cotización/aceptación, vencimientos, entrega/códigos y cierre del pedido.
-- Compilación correcta, cinco pruebas HTTP y doce pruebas SQL con rollback superadas.
+- Compilación correcta, diez pruebas HTTP y doce pruebas SQL con rollback superadas.
 - Publicado en Vercel desde GitHub (main); sin pedidos operativos creados.
 
 Leer CONTINUIDAD/HANDOFF_ACTUAL.md antes de continuar.
@@ -22,7 +22,7 @@ Leer CONTINUIDAD/HANDOFF_ACTUAL.md antes de continuar.
 ## Ejecutar
 Con Node en PATH: npm install, npm run build y npm start.
 En este equipo: ./run-fudibox.ps1 build y ./run-fudibox.ps1 start.
-Abrir http://localhost:3000/chicanito o http://localhost:3000/negocio.
+Abrir http://localhost:3000/chicanito o http://localhost:3000/admin.
 Mantener localhost durante OAuth.
 ./run-fudibox.ps1 test ejecuta pruebas HTTP con servidor encendido.
 Las pruebas SQL están en tests/order-transactions.sql y revierten sus fixtures.

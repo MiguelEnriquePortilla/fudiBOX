@@ -1,13 +1,14 @@
 "use client";
 import { useState } from "react";
 import { browserClient } from "@/lib/supabase/client";
-export function GoogleButton() {
+export function GoogleButton({destination}:{destination?:"admin"}) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   async function login() {
     setBusy(true);
     setError("");
     try {
+      document.cookie="fudi-admin-return="+(destination==="admin"?"1":"0")+"; Path=/; Max-Age=600; SameSite=Lax"+(location.protocol==="https:"?"; Secure":"");
       const { data, error } = await browserClient().auth.signInWithOAuth({
         provider: "google",
         options: {
