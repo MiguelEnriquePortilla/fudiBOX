@@ -15,6 +15,5 @@ En cada cierre: actualizar HANDOFF_ACTUAL.md y agregar una copia fechada en sesi
 - previews/: capturas visuales; históricas salvo que se indique otra cosa.
 - CONTINUIDAD/: estado actual y cierres de sesión.
 
-## Último cierre: 29 septiembre 2026
-Esquema inicial instalado según resultado compartido por Miguel; nueve tablas con RLS activo. Evidencia: RESULTADO-SUPABASE-2026-09-29.json. Google elegido. Proyecto y cliente OAuth creados; falta completar/verificar el proveedor Supabase y probar login. MCP autenticado y verificado en el chat nuevo Lista las tablas de Supabase. Leer HANDOFF_ACTUAL.md antes de continuar; los documentos históricos pueden describir estados anteriores.
-
+## Último cierre: 4 octubre 2026
+Publicado cierre manual de recogida (3c9848a) y paso listo (9717492), verificados Ready Production. Recepción cerrada. Próxima sesión: preparar y guiar una prueba integral controlada de recogida, una instrucción por vez. Leer HANDOFF_ACTUAL.md; no repetir el setup ni usar pendientes históricos como estado actual.

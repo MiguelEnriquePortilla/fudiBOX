@@ -13,8 +13,8 @@ Aplicación principal en C:/Users/hp/Desktop/FUDIGPT/fudiBOX. La carpeta Documen
 - Menú real de 45 productos/presentaciones en /chicanito, opciones y carrito.
 - Panel central /admin para Miguel: restaurantes, menús, contactos de repas y atención inicial de pedidos. /negocio redirige a /admin.
 - Solicitud, reserva, confirmación y cancelación transaccionales implementadas.
-- Recepción cerrada: faltan cotización/aceptación, vencimientos, entrega/códigos y cierre del pedido.
-- Compilación correcta, diez pruebas HTTP y doce pruebas SQL con rollback superadas.
+- Recogida: listo y cierre manual implementados, con cargo único de servicio. Falta ensayo integral por pantallas; recepción cerrada. Domicilio y validación por código pendientes.
+- Compilación correcta; diez pruebas HTTP de producción y pruebas SQL de listo/cierre con rollback superadas. Ver cierre del 4 de octubre en CONTINUIDAD.
 - Publicado en Vercel desde GitHub (main); sin pedidos operativos creados.
 
 Leer CONTINUIDAD/HANDOFF_ACTUAL.md antes de continuar.
