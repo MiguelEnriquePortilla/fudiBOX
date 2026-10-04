@@ -1,6 +1,6 @@
 # fudiBOX: guía de operación y pruebas
 
-Actualizado: 2 de octubre de 2026.
+Actualizado: 4 de octubre de 2026.
 
 ## 1. Dos espacios, una operación
 
@@ -52,11 +52,15 @@ La base valida precios y opciones, reserva existencias cuando aplican y evita du
 
 Para habilitar pruebas completas faltan:
 
-- Recoger: marcar listo, validar la entrega y cerrar el pedido.
+- Recoger: validar la entrega y cerrar el pedido. Marcar listo ya está implementado.
 - Domicilio: cotizar envío, aceptar la cotización, vencer solicitudes sin respuesta, asignar repa, marcar listo, validar recogida/entrega y cerrar.
 - Registrar y comprobar cobros y liquidaciones sin confundir producto, servicio y envío.
 
 No abrir recepción cambiando solamente un valor en la base. Primero completar y comprobar el recorrido que se vaya a ofrecer. No hace falta tener 20 restaurantes o 50 pedidos diarios para comenzar un piloto controlado.
+
+### Marcar listo para recoger
+
+En Pedidos, cuando un pedido para recoger esté En preparación, confirma con el restaurante que está preparado y pulsa Marcar listo para recoger. El cliente verá Listo para recoger al consultar o recargar su cuenta. No se envía un aviso automático. Repetir la acción no duplica el registro. Este paso todavía no registra entrega ni cobro; el cierre sigue pendiente.
 
 ## 8. Primer piloto controlado
 

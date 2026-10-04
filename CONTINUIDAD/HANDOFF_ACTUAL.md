@@ -1,3 +1,12 @@
+# Paso Listo para recoger — 4 octubre 2026
+
+- Implementado botón del administrador para pickup preparing -> ready. Cliente ve estado y aviso de recogida al consultar su cuenta. No hay notificaciones automáticas.
+- Migración 202610020001_pickup_ready.sql aplicada. Sólo administrador; bloqueo de fila, reintento idempotente y evento pickup_ready. No cambia inventario, cobros ni completed_at.
+- tests/pickup-ready.sql ejecutado en Supabase: PASS (transición, reintento, evento único, rechazo de no-admin, estados inválidos, domicilio y permisos anónimos). Todo con rollback, sin pedidos de prueba persistentes.
+- Compilación correcta. Recepción permanece cerrada. Siguiente paso acotado: validar recogida y cerrar pedido; no ampliar a domicilio todavía.
+
+---
+
 # Operación centralizada — 2 octubre 2026
 
 Este estado prevalece sobre los antecedentes siguientes.
