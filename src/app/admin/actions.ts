@@ -23,3 +23,5 @@ export async function confirmOrder(f:FormData){await run("confirm_business_order
 export async function cancelOrder(f:FormData){await run("cancel_pending_order",{p_order_id:value(f,"order_id")},"pedidos");}
 
 export async function markPickupReady(f:FormData){await run("operator_mark_pickup_ready",{p_order_id:value(f,"order_id")},"pedidos");}
+
+export async function completePickup(f:FormData){await run("operator_complete_pickup",{p_order_id:value(f,"order_id"),p_received:f.get("received")==="on"},"pedidos");}

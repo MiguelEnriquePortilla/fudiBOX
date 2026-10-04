@@ -1,3 +1,12 @@
+# Cierre manual de recogida — 4 octubre 2026
+
+- Administrador puede cerrar únicamente pickup ready -> delivered, confirmando explícitamente que el restaurante entregó al cliente. Verificación manual; no se implementó código de recogida. No afirmar que existe validación por código.
+- operator_complete_pickup: bloqueo de pedido, completed_at, evento con actor, reservas reserved -> consumed sin descontar stock otra vez, ledger platform_fee $10 una vez. No genera settlement ni afirma cobro efectivo.
+- Migración 202610040001_complete_pickup.sql aplicada. tests/complete-pickup.sql PASS con rollback: permisos, estados, confirmación obligatoria, repetición, cargo/evento únicos, inventario y ausencia de liquidación.
+- Compilación correcta. Recepción permanece cerrada. Siguiente paso: prueba integral controlada de recogida desde cliente y administrador; decidir verificación por código antes de apertura general. Domicilio sigue pendiente.
+
+---
+
 # Paso Listo para recoger — 4 octubre 2026
 
 - Implementado botón del administrador para pickup preparing -> ready. Cliente ve estado y aviso de recogida al consultar su cuenta. No hay notificaciones automáticas.
