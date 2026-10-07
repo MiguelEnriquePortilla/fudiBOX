@@ -11,5 +11,6 @@ export default async function Chicanito() {
  const {data:products,error}=await client.from("products").select("id,name,description,price_cents,image_path,category,sort_order,available,option_groups").eq("business_id",business.id).order("sort_order");
  if(error) throw new Error("No pudimos consultar el menú.");
  const {data:{user}}=await client.auth.getUser();
- return <Catalog business={business} products={(products??[]) as Product[]} signedIn={!!user}/>;
+ const {data:pickupPilot}=user?await client.rpc("my_pickup_pilot",{p_business_id:business.id}):{data:false};
+ return <Catalog business={business} products={(products??[]) as Product[]} signedIn={!!user} pickupPilot={pickupPilot===true}/>;
 }

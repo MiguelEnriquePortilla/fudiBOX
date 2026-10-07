@@ -6,7 +6,8 @@ import { Business,Product,money } from "@/lib/catalog";
 import { submitOrder } from "./actions";
 type CartLine={key:string;product_id:string;quantity:number;choices:Record<string,string>};
 
-export function Catalog({business,products,signedIn}:{business:Business;products:Product[];signedIn:boolean}){
+export function Catalog({business,products,signedIn,pickupPilot=false}:{business:Business;products:Product[];signedIn:boolean;pickupPilot?:boolean}){
+ const canOrder=business.accepting_orders||pickupPilot;
  const storageKey=business.slug==="chicken-chicanito"?"fudibox-chicanito-cart-v1":"fudibox-cart-"+business.id;
  const router=useRouter();
  const [category,setCategory]=useState("Todos");
@@ -51,7 +52,7 @@ export function Catalog({business,products,signedIn}:{business:Business;products
   setCartPulse(n=>n+1);setNotice("Agregado. Tu carrito tiene "+(itemCount+quantity)+" productos.");dialog.current?.close();setSelected(null);
  }
  function send(form:FormData){
-  if(!business.accepting_orders||pending)return;
+  if(!canOrder||pending)return;
   setError("");
   const payload={business_id:business.id,items:cart.map(({product_id,quantity,choices})=>({product_id,quantity,choices})),expected_subtotal:subtotal,name:String(form.get("name")||"").trim(),phone:String(form.get("phone")||"").trim(),delivery_method:method,address:String(form.get("address")||"").trim(),notes:String(form.get("notes")||"").trim()};
   startTransition(async()=>{
@@ -66,7 +67,8 @@ export function Catalog({business,products,signedIn}:{business:Business;products
  return <section className="menu-page">
   <button type="button" className="cart-launcher" aria-haspopup="dialog" aria-label={"Abrir carrito, "+itemCount+" productos"} onClick={()=>cartDialog.current?.showModal()}><span key={cartPulse} className={cartPulse?"cart-pulse":""}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M2 3h3l3 13h11l3-9H6"/><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg><strong>Carrito</strong><b className="cart-count">{itemCount}</b></span></button>
   <div className="merchant-heading">{business.logo_path&&<img src={business.logo_path} alt={business.name}/>}<div><span className="eyebrow">SABOR DE POR ACÁ</span><h1>{business.name}</h1><p>{business.address}</p>{business.map_url&&<a className="text-link" href={business.map_url} target="_blank" rel="noreferrer">Ver punto de recogida ↗</a>}</div></div>
-  {!business.accepting_orders&&<div className="menu-notice">Estamos preparando la apertura en fudiBOX. Puedes conocer el menú y armar tu carrito; todavía no se enviarán pedidos al negocio.</div>}
+  {!canOrder&&<div className="menu-notice">Estamos preparando la apertura en fudiBOX. Puedes conocer el menú y armar tu carrito; todavía no se enviarán pedidos al negocio.</div>}
+  {pickupPilot&&<div className="menu-notice">Tienes acceso a una compra real para recoger. Pagarás productos + $10 de servicio en el negocio. Disponible para un solo pedido.</div>}
   <div className="menu-tabs" aria-label="Categorías">{categories.map(c=><button key={c} className={category===c?"selected":""} onClick={()=>setCategory(c)} aria-pressed={category===c}>{c}</button>)}</div>
   <p className="cart-notice" role="status">{notice}</p>
   <div className="menu-layout"><div className="product-grid">
@@ -82,14 +84,14 @@ export function Catalog({business,products,signedIn}:{business:Business;products
     <div className="total-row grand-total"><span>{method==="pickup"?"Total para recoger":"Subtotal sin envío"}</span><strong>{money(subtotal+1000)}</strong></div>
     <p className="fine">El servicio de $10 se cobra una sola vez por pedido. Pagas al recibir o recoger.</p>
     {!signedIn?<Link className="button" href="/acceso">Entrar para continuar</Link>:<form action={send} className="checkout-form">
-     <label>Entrega<select value={method} onChange={e=>setMethod(e.target.value)} disabled={pending}><option value="pickup">Recoger en el negocio</option><option value="delivery">A domicilio · envío por cotizar</option></select></label>
+     <label>Entrega<select value={method} onChange={e=>setMethod(e.target.value)} disabled={pending}><option value="pickup">Recoger en el negocio</option>{!pickupPilot&&<option value="delivery">A domicilio · envío por cotizar</option>}</select></label>
      {method==="delivery"&&<p className="fine">Aceptarás productos + $10 + envío después de recibir la cotización. El negocio aún no preparará tu pedido.</p>}
      <label>Tu nombre<input name="name" required maxLength={80} autoComplete="name" disabled={pending}/></label>
      <label>Tu teléfono<input name="phone" required type="tel" inputMode="numeric" pattern="[0-9]{10}" minLength={10} maxLength={10} autoComplete="tel-national" placeholder="7341234567" aria-describedby="phone-help" title="Escribe los 10 dígitos de tu número, incluida la clave de la ciudad." disabled={pending}/></label><p id="phone-help" className="fine">10 dígitos, incluida la clave de tu ciudad. Nosotros agregamos +52.</p>
      {method==="delivery"&&<label>Dirección y referencias<textarea name="address" required minLength={5} maxLength={500} disabled={pending}/></label>}
      <label>Notas para el negocio<textarea name="notes" maxLength={500} disabled={pending}/></label>
      {error&&<p role="alert" className="alert">{error}</p>}
-     <button className="button" disabled={pending||!business.accepting_orders||!cart.length}>{pending?"Guardando…":business.accepting_orders?"Solicitar pedido":"Pedidos aún no habilitados"}</button>
+     <button className="button" disabled={pending||!canOrder||!cart.length}>{pending?"Guardando…":canOrder?"Solicitar pedido":"Pedidos aún no habilitados"}</button>
     </form>}
    </>}
   </div></dialog>
