@@ -1,0 +1,6 @@
+type Item = {product_name:string;quantity:number;selections:{quantity:number;choices:Record<string,string>}[]|null};
+type MessageOrder = {id:string;customer_name:string;delivery_method:string;notes:string|null;subtotal_cents:number;total_cents:number|null;order_items:Item[]};
+export function restaurantMessage(o:MessageOrder, restaurant:string) {
+ const amount = (n:number) => new Intl.NumberFormat("es-MX",{style:"currency",currency:"MXN"}).format(n/100);
+ return [`fudiBOX · Pedido ${o.id}`, restaurant, `Cliente: ${o.customer_name}`, o.delivery_method === "pickup" ? "Recoger en restaurante" : "A domicilio (confirmar envío antes de preparar)", ...o.order_items.map(i => `${i.quantity} × ${i.product_name}` + (i.selections?.length ? "\n" + i.selections.map(s => `${s.quantity} × ` + Object.entries(s.choices).map(([k,v]) => `${k}: ${v}`).join(", ")).join("\n") : "")), o.notes ? `Notas: ${o.notes}` : "", `Productos: ${amount(o.subtotal_cents)}`, o.total_cents === null ? "Total pendiente de cotizar envío" : `Total del cliente: ${amount(o.total_cents)} (incluye cargos de servicio)`, "¿Hay disponibilidad? Confirma por favor el tiempo de preparación. Espera nuestra confirmación antes de preparar."].filter(Boolean).join("\n");
+}

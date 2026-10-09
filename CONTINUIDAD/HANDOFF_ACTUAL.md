@@ -1,3 +1,10 @@
+# Panel agil - 9 octubre 2026
+
+Pedidos: vistas En curso e Historial, pendientes primero y contadores. Actualizacion cada 20 segundos solo con pagina visible, pausada al editar formularios. Sonido opcional para nuevos pedidos por confirmar, requiere panel abierto; no es notificacion push.
+WhatsApp: borrador con folio, cliente, productos, opciones, notas e importes; operador elige chat y envia manualmente. No comparte telefono/direccion del cliente. Respuesta del restaurante no cambia estados automaticamente.
+Confirmaciones y cierre conservan acciones/RPC existentes. No se abrio recepcion ni se crearon pedidos. Build y 14 pruebas locales aprobadas. Falta prueba autenticada con pedido entrante para comprobar sonido y operacion por pantallas; no se simulo un pedido real.
+
+---
 # Actualizacion 9 octubre 2026: PWA
 
 - Dominio comprado y conectado: https://fudibox.app. Google verificado en el nuevo dominio; Supabase Site URL y callback actualizados.
