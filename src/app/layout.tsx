@@ -1,7 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "./globals.css";
+import "./pwa.css";
+import { InstallApp } from "./install-app";
+export const viewport: Viewport = { themeColor: "#063849" };
 export const metadata: Metadata = {
+  applicationName: "fudiBOX",
+  appleWebApp: { capable: true, title: "fudiBOX", statusBarStyle: "default" },
+  icons: { icon: "/icons/icon-192.png", apple: "/icons/apple-touch-icon.png" },
   title: "fudiBOX · Tu barrio, a tu puerta",
   description: "Comida de por acá. fudiBOX en Jojutla y alrededores.",
   robots: { index: false, follow: false }
@@ -13,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <span className="location">Jojutla y alrededores</span>
       <Link className="nav-link" href="/cuenta">Mi cuenta <span aria-hidden="true">↗</span></Link>
     </header>
+    <InstallApp />
     <main>{children}</main>
     <footer><strong>De tu barrio, a tu puerta.</strong><span>Versión de prueba · Pedidos aún no disponibles</span></footer>
   </body></html>;
