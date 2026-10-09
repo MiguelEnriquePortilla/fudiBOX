@@ -1,0 +1,6 @@
+# Portada: comida mexicana de barrio
+
+9 octubre 2026. Imagen creada con la herramienta integrada image_gen. Archivo: public/assets/antojitos-mexicanos-v1.png. Imagen ilustrativa, no representa el catalogo disponible. Portada adaptable a movil; Fudi permanece en el acceso y en los recursos de marca. Compilacion aprobada. Inspeccion visual del navegador bloqueada por fallo de su runtime.
+
+## Prompt
+Create a photorealistic editorial food photograph for Mexican local food marketplace fudiBOX homepage. Landscape 3:2 composition. Overhead view of authentic central Mexican neighborhood antojitos on a warm terracotta orange tabletop: plate of three small soft corn tortilla tacos with carne asada cilantro onion, two thick gorditas split and filled with beans cheese chicharron, two folded golden quesadillas with melted Oaxaca cheese. Small bowls salsa verde and roja, lime wedges. Beautiful appetizing real corn texture, natural sunlight and soft shadows, simple unbranded ceramic plates, generous but uncluttered composition. Food occupies center and right with some space around edges for cropping. No text, no logos, no packaging, no hands, no robot. Original photography-style illustration, not a screenshot or website mockup.
