@@ -4,7 +4,7 @@
 - Pedido real de recogida completado el 7 octubre: $95, estado entregado, un cargo de servicio de $10 y un evento pickup_completed. Formulario corregido en 351fc1a. El permiso de piloto ya fue consumido. Recepcion general sigue cerrada.
 - PWA implementada: manifest, iconos propios, boton Instalar app, instrucciones Android/iPhone y aviso sin conexion. Solo se guarda la pagina generica offline; no se guardan cuentas/pedidos ni se reenvian compras.
 - Build correcto y 12 pruebas locales HTTP/worker aprobadas. Revision visual automatizada bloqueada por fallo del runtime de navegador; falta comprobar instalacion fisica en Android/iPhone.
-- Siguiente paso: publicar/verificar recursos en produccion y probar instalar desde fudibox.app en un telefono. No abrir pedidos ni reactivar permisos automaticamente.
+- Publicado cd24678 en main y verificado en https://fudibox.app: 12 pruebas aprobadas (11 HTTP de produccion y una del worker local). Siguiente paso: probar instalar desde fudibox.app en un telefono. No abrir pedidos ni reactivar permisos automaticamente.
 
 ---
 # Compra real restringida — 6 octubre 2026
