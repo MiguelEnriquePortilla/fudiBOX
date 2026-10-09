@@ -9,12 +9,12 @@ export default async function Home() {
     <section className="food-hero">
       <div className="hero-copy">
         <span className="eyebrow">EL SABOR DE JOJUTLA</span>
-        <h1>La comida que te gusta.<br /><em>Cerca de ti.</em></h1>
+        <h1>La mesa <em>está puesta.</em></h1>
         <p>El sabor de los restaurantes de tu zona, en un solo lugar. Explora sus menús y elige tu próximo pedido.</p>
         <Link className="button" href="#restaurantes">Ver restaurantes <span aria-hidden="true">↗</span></Link>
         <p className="food-opening">Estamos preparando la apertura. Por ahora, consulta los menús.</p>
       </div>
-      <figure className="food-photo"><img src="/assets/antojitos-mexicanos-v1.png" width="1536" height="1024" fetchPriority="high" alt="Tacos, gorditas y quesadillas con salsas y limón sobre una mesa de color terracota" /><figcaption>Inspirado en la comida de nuestra comunidad. Imagen ilustrativa.</figcaption></figure>
+      <figure className="food-photo"><img src="/assets/mesa-mexicana-v2.png" width="2172" height="724" fetchPriority="high" alt="Mesa mexicana con pozole, pollo asado, tacos, gorditas, quesadillas y salsas" /><figcaption>Inspirado en la comida de nuestra comunidad. Imagen ilustrativa.</figcaption></figure>
     </section>
     <section className="discovery" id="restaurantes">
       <div><span className="eyebrow">EXPLORA EL MENÚ</span><h2>Explora los restaurantes</h2></div>
