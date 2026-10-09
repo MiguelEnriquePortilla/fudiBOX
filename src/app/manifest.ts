@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
  return {
   id: "/", name: "fudiBOX", short_name: "fudiBOX",
-  description: "Comida de por acá. Tu barrio, a un toque.",
+  description: "Restaurantes y menús en Jojutla y alrededores.",
   lang: "es-MX", start_url: "/", scope: "/", display: "standalone",
   background_color: "#fff8ed", theme_color: "#063849",
   icons: [

@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   applicationName: "fudiBOX",
   appleWebApp: { capable: true, title: "fudiBOX", statusBarStyle: "default" },
   icons: { icon: "/icons/icon-192.png", apple: "/icons/apple-touch-icon.png" },
-  title: "fudiBOX · Tu barrio, a tu puerta",
-  description: "Comida de por acá. fudiBOX en Jojutla y alrededores.",
+  title: "fudiBOX · Restaurantes en Jojutla",
+  description: "Explora restaurantes, consulta menús y encuentra tus platillos favoritos en Jojutla y alrededores.",
   robots: { index: false, follow: false }
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -21,6 +21,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </header>
     <InstallApp />
     <main>{children}</main>
-    <footer><strong>De tu barrio, a tu puerta.</strong><span>Versión de prueba · Pedidos aún no disponibles</span></footer>
+    <footer><strong>Tus restaurantes, más cerca.</strong><span>Versión de prueba · Pedidos aún no disponibles</span></footer>
   </body></html>;
 }

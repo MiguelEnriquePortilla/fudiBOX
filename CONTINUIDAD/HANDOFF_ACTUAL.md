@@ -1,3 +1,9 @@
+# Lenguaje de producto - 9 octubre 2026
+
+Miguel pidio espanol natural de Mexico, claro y directo. Evitar jerga como que onda, repa, al tiro y machin. Textos actualizados en portada, acceso, metadatos y etiquetas del panel. Mantener este tono en futuros cambios. No anunciar entrega disponible mientras la operacion siga cerrada.
+
+---
+
 # Panel agil - 9 octubre 2026
 
 Pedidos: vistas En curso e Historial, pendientes primero y contadores. Actualizacion cada 20 segundos solo con pagina visible, pausada al editar formularios. Sonido opcional para nuevos pedidos por confirmar, requiere panel abierto; no es notificacion push.
