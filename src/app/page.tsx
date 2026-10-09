@@ -14,7 +14,7 @@ export default async function Home() {
         <Link className="button" href="#restaurantes">Ver restaurantes <span aria-hidden="true">↗</span></Link>
         <p className="food-opening">Estamos preparando la apertura. Por ahora, consulta los menús.</p>
       </div>
-      <figure className="food-photo"><img src="/assets/mesa-mexicana-v2.png" width="2172" height="724" fetchPriority="high" alt="Mesa mexicana con pozole, pollo asado, tacos, gorditas, quesadillas y salsas" /><figcaption>Inspirado en la comida de nuestra comunidad. Imagen ilustrativa.</figcaption></figure>
+      <div className="food-mascot"><img src="/assets/fudi-repa-v2-uniforme.png" fetchPriority="high" alt="Fudi, la mascota de fudiBOX, con casco naranja y mochila de reparto" /></div>
     </section>
     <section className="discovery" id="restaurantes">
       <div><span className="eyebrow">EXPLORA EL MENÚ</span><h2>Explora los restaurantes</h2></div>
