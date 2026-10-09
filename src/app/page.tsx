@@ -14,7 +14,7 @@ export default async function Home() {
         <Link className="button" href="#restaurantes">Ver restaurantes <span aria-hidden="true">↗</span></Link>
         <p className="food-opening">Estamos preparando la apertura. Por ahora, consulta los menús.</p>
       </div>
-      <div className="food-mascot"><img src="/assets/fudi-repa-v2-uniforme.png" fetchPriority="high" alt="Fudi, la mascota de fudiBOX, con casco naranja y mochila de reparto" /></div>
+      <div className="food-mascot"><img src="/assets/fudi-moto-v1.png" fetchPriority="high" alt="Fudi en su moto de reparto, con casco naranja y mochila de fudiBOX" /></div>
     </section>
     <section className="discovery" id="restaurantes">
       <div><span className="eyebrow">EXPLORA EL MENÚ</span><h2>Explora los restaurantes</h2></div>

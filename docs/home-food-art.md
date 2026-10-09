@@ -11,3 +11,7 @@ Prompt: Create an original photorealistic editorial food photograph for fudiBOX,
 
 ## Ajuste de continuidad visual
 Miguel pidio volver a Fudi en primer plano. Se conserva la mesa como fondo decorativo CSS con blur de 7px, opacidad .22 y velo marfil para lectura. No se modifica el archivo de imagen. Titulo: La mesa esta puesta.
+
+## Fudi en moto y wallpaper aprobado
+Imagen principal: public/assets/fudi-moto-v1.png, Fudi completo sobre moto, fondo transparente, generado con image_gen usando el personaje original como referencia. Patron: public/assets/platillos-pattern-v1.png, herramienta integrada image_gen. Aplicado en CSS al 19% con velo crema para lectura. Sustituye la mesa difuminada.
+Prompt del patron: Seamless repeating wallpaper tile for a Mexican food delivery brand. Square tile, warm cream background #fff8ed. Sparse small hand-drawn outline icons of Mexican tacos, filled gorditas, folded quesadillas, bowls of pozole with hominy and radish, and whole roast chicken on platter. Each dish recognizable and simplified, elegant consistent thin terracotta lines at low contrast, occasional muted warm gold accent. Generous empty space, small icons evenly spaced in staggered rows with slight varied rotations, sophisticated quiet background pattern, no text, no lettering, no logos, no characters, no gradients, flat 2D line illustration. Seamless edges. Pattern must be subtle behind a large full-color mascot.
