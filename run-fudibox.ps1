@@ -9,7 +9,11 @@ $env:NEXT_TELEMETRY_DISABLED = '1'
 switch ($Mode) {
   'build' { & $nodePath 'node_modules/next/dist/bin/next' build }
   'dev' { & $nodePath 'node_modules/next/dist/bin/next' dev --hostname 127.0.0.1 --port 3000 }
-  'test' { & $nodePath --test 'tests/auth-http.test.mjs' }
+  'test' {
+    $testFiles = @(Get-ChildItem -LiteralPath (Join-Path $PSScriptRoot 'tests') -Filter '*.test.mjs' -File | Sort-Object Name | ForEach-Object { $_.FullName })
+    if ($testFiles.Count -eq 0) { throw 'No se encontraron pruebas.' }
+    & $nodePath --test @testFiles
+  }
   'typecheck' { & $nodePath 'node_modules/typescript/bin/tsc' --noEmit }
   'start' { & $nodePath 'node_modules/next/dist/bin/next' start --hostname 127.0.0.1 --port 3000 }
 }

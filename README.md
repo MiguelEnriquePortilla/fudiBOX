@@ -48,3 +48,9 @@ Abrir https://fudibox.app y pulsar Instalar app. Android: Chrome, Instalar app. 
 - Siguiente paso: elegir cuenta de prueba y autorizar un único pedido real de recogida; recepción general cerrada y permiso previo consumido. No habilitar automáticamente.
 - Pendientes: acceso Mi panel desde Mi cuenta para operadores, prueba de instalación móvil y posterior evaluación del enlace de restaurante.
 - Leer [handoff vigente](CONTINUIDAD/HANDOFF_ACTUAL.md) para retomar. No cerrar las sesiones de servicios.
+
+## Candidato de recogida ? 21 octubre 2026
+
+Cambios en revisi?n en codex/pickup-readiness-20261021: controles separados de recogida/domicilio, seguimiento del cliente con consulta visible cada 20 segundos, Mi panel condicionado al permiso de operador y monitoreo con pausa, fallos y ?ltima lectura correcta. ./run-fudibox.ps1 test descubre toda la suite. Soporte sin contacto configurado sigue pendiente antes de abrir.
+
+Esta rama no est? publicada. La nueva migraci?n debe aplicarse antes de desplegarla; recepci?n general sigue cerrada. Consultar [release, pruebas y l?mites](docs/pickup-readiness-release.md). Incidencias, conciliaci?n y redise?o son hitos posteriores.

@@ -1,3 +1,15 @@
+# Candidato en revisi?n ? 21 octubre 2026
+
+Miguel aprob? el hito 1 del dise?o de recogida. Rama codex/pickup-readiness-20261021 en checkout enlazado C:/Users/hp/Documents/ChatGPT/fudiBOX/pickup-readiness, asociado al repositorio activo de Desktop. No es otra app del prototipo hist?rico.
+
+Controles de modalidad, seguimiento de cliente, Mi panel por permisos, monitoreo expl?cito y launcher de toda la suite preparados. Leer docs/pickup-readiness-release.md para orden de migraci?n/despliegue y pruebas pendientes. No publicado; migraci?n nueva no aplicada a Supabase. Recepci?n general permanece cerrada. No crear permisos/pedidos reales autom?ticamente.
+
+Incidencias y conciliaci?n requieren el hito 2 y decidir pol?ticas con Miguel; el redise?o con frontend-design sigue despu?s de verificar funcionalidad. La portada aprobada se conserva.
+
+La verificaci?n final de esta rama se documentar? en docs/pickup-readiness-verification.md. Los resultados de abajo pertenecen al cierre hist?rico del 9 de octubre.
+
+---
+
 # Handoff vigente — cierre 9 octubre 2026
 
 Miguel pidió cerrar esta sesión y continuar después. Este documento sustituye las instrucciones de próximos pasos de los antecedentes. No cerrar sesiones de Google/Supabase/Vercel ni cambiar recepción al retomar.

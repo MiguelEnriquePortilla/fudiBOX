@@ -4,10 +4,12 @@ import { useRouter } from "next/navigation";
 import { useEffect,useRef,useState,useTransition } from "react";
 import { Business,Product,money } from "@/lib/catalog";
 import { submitOrder } from "./actions";
+import { orderMethods } from "@/lib/order-methods";
 type CartLine={key:string;product_id:string;quantity:number;choices:Record<string,string>};
 
 export function Catalog({business,products,signedIn,pickupPilot=false}:{business:Business;products:Product[];signedIn:boolean;pickupPilot?:boolean}){
- const canOrder=business.accepting_orders||pickupPilot;
+ const methods=orderMethods(business,pickupPilot);
+ const canOrder=methods.length>0;
  const storageKey=business.slug==="chicken-chicanito"?"fudibox-chicanito-cart-v1":"fudibox-cart-"+business.id;
  const router=useRouter();
  const [category,setCategory]=useState("Todos");
@@ -20,7 +22,8 @@ export function Catalog({business,products,signedIn,pickupPilot=false}:{business
  const [notice,setNotice]=useState("");
  const [error,setError]=useState("");
  const [pending,startTransition]=useTransition();
- const [method,setMethod]=useState("pickup");
+ const [chosenMethod,setMethod]=useState("pickup");
+ const method=methods.includes(chosenMethod as "pickup"|"delivery")?chosenMethod:(methods[0]??"pickup");
  const dialog=useRef<HTMLDialogElement>(null);
  const cartDialog=useRef<HTMLDialogElement>(null);
  const [cartPulse,setCartPulse]=useState(0);
@@ -84,7 +87,7 @@ export function Catalog({business,products,signedIn,pickupPilot=false}:{business
     <div className="total-row grand-total"><span>{method==="pickup"?"Total para recoger":"Subtotal sin envío"}</span><strong>{money(subtotal+1000)}</strong></div>
     <p className="fine">El servicio de $10 se cobra una sola vez por pedido. Pagas al recibir o recoger.</p>
     {!signedIn?<Link className="button" href="/acceso">Entrar para continuar</Link>:<form action={send} className="checkout-form">
-     <label>Entrega<select value={method} onChange={e=>setMethod(e.target.value)} disabled={pending}><option value="pickup">Recoger en el negocio</option>{!pickupPilot&&<option value="delivery">A domicilio · envío por cotizar</option>}</select></label>
+     <label>Entrega<select value={method} onChange={e=>setMethod(e.target.value)} disabled={pending||!canOrder}>{!canOrder&&<option value="pickup">Pedidos aún no habilitados</option>}{methods.includes("pickup")&&<option value="pickup">Recoger en el negocio</option>}{methods.includes("delivery")&&<option value="delivery">A domicilio · envío por cotizar</option>}</select></label>
      {method==="delivery"&&<p className="fine">Aceptarás productos + $10 + envío después de recibir la cotización. El negocio aún no preparará tu pedido.</p>}
      <label>Tu nombre<input name="name" required maxLength={80} autoComplete="name" disabled={pending}/></label>
      <label>Tu teléfono<input name="phone" required type="tel" inputMode="numeric" pattern="[0-9]{10}" minLength={10} maxLength={10} autoComplete="tel-national" placeholder="7341234567" aria-describedby="phone-help" title="Escribe los 10 dígitos de tu número, incluida la clave de la ciudad." disabled={pending}/></label><p id="phone-help" className="fine">10 dígitos, incluida la clave de tu ciudad. Nosotros agregamos +52.</p>

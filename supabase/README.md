@@ -1,3 +1,11 @@
+# Estado actualizado ? candidato 21 octubre 2026
+
+Ya existen RPC transaccionales para solicitar, confirmar, cancelar y cerrar recogidas. Cotizaciones, reparto y cron siguen pendientes. Los apartados inferiores son antecedentes del 29 de septiembre, no el estado vigente.
+
+La nueva migraci?n 202610210001_order_methods.sql a?ade controles separados de modalidad sin abrir recepci?n. Validaci?n local aislada y secuencia de publicaci?n: [release](../docs/pickup-readiness-release.md). No se ha aplicado a producci?n en esta sesi?n.
+
+---
+
 ﻿# Supabase · esquema inicial instalado
 
 Proyecto confirmado nuevo y exclusivo: fudiBOX (aybgfwjbnsqbfnzmztmx).

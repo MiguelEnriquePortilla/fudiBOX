@@ -1,11 +1,11 @@
 # fudiBOX: guía de operación y pruebas
 
-Actualizado: 4 de octubre de 2026.
+Actualizado: 21 de octubre de 2026. Candidato de recogida; consultar docs/pickup-readiness-release.md antes de publicar.
 
 ## 1. Dos espacios, una operación
 
-- Cliente: https://fudibox.vercel.app. Explora restaurantes, arma carrito y consulta sus pedidos. Su cuenta no muestra herramientas de operación.
-- Equipo fudiBOX: https://fudibox.vercel.app/admin. Miguel administra restaurantes, menús, contactos de repas y pedidos. Requiere Google y autorización de administrador en servidor.
+- Cliente: https://fudibox.app. Explora restaurantes, arma carrito y consulta sus pedidos. Su cuenta no muestra herramientas de operación.
+- Equipo fudiBOX: https://fudibox.app/admin. Miguel administra restaurantes, menús, contactos de repas y pedidos. Requiere Google y autorización de administrador en servidor.
 - Restaurantes y repas: no necesitan cuenta ni aplicación. La coordinación será por WhatsApp, a cargo del equipo fudiBOX.
 
 Por ahora ambos espacios viven en el mismo dominio, con navegación separada. El dominio propio está aplazado; no hace falta comprarlo para probar. /negocio redirige al panel central. No se ha publicado una aplicación en tiendas móviles.
@@ -83,7 +83,7 @@ Migración de operación: supabase/migrations/202610010001_operator_console.sql,
 
 Variables de producción: URL pública de Supabase y clave publicable. Conservar las configuraciones de retorno Google en Supabase. Al conectar un dominio nuevo, actualizar Site URL y permitir su /auth/callback, comprobar el acceso y luego compartirlo.
 
-Pruebas: tests/auth-http.test.mjs y tests/operator-http.test.mjs (10 comprobaciones HTTP). Las pruebas SQL transaccionales deben ejecutarse con rollback y una cuenta de prueba autorizada; nunca dejar fixtures operativos. Leer CONTINUIDAD/HANDOFF_ACTUAL.md antes de continuar.
+Pruebas: ./run-fudibox.ps1 test descubre toda la suite tests/*.test.mjs; requiere servidor candidato. Las pruebas locales y SQL se detallan en docs/pickup-readiness-release.md. Las pruebas SQL transaccionales deben ejecutarse con rollback y una cuenta de prueba autorizada; nunca dejar fixtures operativos. Leer CONTINUIDAD/HANDOFF_ACTUAL.md antes de continuar.
 
 ## 10. Dudas frecuentes
 
@@ -96,3 +96,9 @@ Pruebas: tests/auth-http.test.mjs y tests/operator-http.test.mjs (10 comprobacio
 ¿Puedo mostrar ya fudiBOX? Sí, como versión de prueba con catálogo y carrito; la recepción está cerrada.
 
 ¿Ocultar el enlace protege el panel? No por sí solo. La autorización también se exige en servidor y en las funciones de base de datos.
+
+## Candidato de recogida ? 21 octubre
+
+Mi cuenta muestra restaurante, referencia, fecha, direcci?n de recogida, estimaci?n y desglose de importes. Consulta datos cada 20 segundos con la p?gina visible; conserva la ?ltima informaci?n ante fallos y pausa durante cancelaci?n. Mi panel aparece s?lo con autorizaci?n de operador comprobada. El contacto de soporte a?n no est? configurado en la p?gina: resolverlo antes de abrir.
+
+Recogida y domicilio tienen controles separados en servidor. La recepci?n general contin?a cerrada y domicilio queda deshabilitado por defecto. La nueva migraci?n debe aplicarse antes de publicar este candidato. No se ha aplicado autom?ticamente. Ver [release y pruebas](pickup-readiness-release.md).
