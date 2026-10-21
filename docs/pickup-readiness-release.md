@@ -1,13 +1,19 @@
 # Pickup readiness release checklist — 21 October 2026
 
-Branch: codex/pickup-readiness-20261021. This candidate is not published.
+Release authorized for the single main branch on 21 October 2026. Check Git/Vercel for the deployed commit.
+
+## Compatibility before migration
+
+The beta catalog reader retries the legacy projection only when a method column is missing (42703). It returns both methods and reception disabled, preserving browsing without enabling checkout. Other database errors remain errors. Both catalog routes use this reader and suppress pilot access when pickup is disabled. Four regression tests cover this compatibility path. Therefore this UI may be deployed before the additive migration while reception remains closed.
+
+The migration is still required before enabling and claiming the new database method guards. Compatibility in the reader does not replace that server-side migration or modify the hosted schema.
 
 ## Database before application
 
 1. Validate `202610210001_order_methods.sql` in an isolated database first. The migration adds `pickup_enabled=true`, `delivery_enabled=false`, preserves the overall reception switch, and enforces method gates in the order RPC and pilot visibility RPC.
 2. Back up the target schema/function definitions and record current restaurant reception values.
 3. Apply only this new migration through the normal authorized database release process. Do not repeat historical migrations.
-4. Confirm the new flags, unchanged `accepting_orders`, and the restricted RPC grants before publishing the application that selects these columns.
+4. Confirm the new flags, unchanged `accepting_orders`, and the restricted RPC grants before enabling ordering. The current beta application safely supports either schema.
 5. Keep general reception closed. No test permission or order is created by this migration.
 
 Rollback: first restore the previous application deployment, leaving the additive columns and stricter database checks in place. Do not drop the columns while this candidate is running. If a database rollback is necessary, restore both prior RPC definitions from `202610060001_pickup_pilot.sql` under a separate reviewed transaction while keeping reception closed; only then consider removing the columns. Do not replay that entire migration, which also creates existing tables.

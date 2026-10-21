@@ -1,0 +1,20 @@
+.account { padding-top: 34px; }
+.account-heading { margin-bottom: 28px; }
+.account-heading h1 { margin-bottom: 10px; }
+.account-heading p { margin: 0; }
+.account-heading .secondary { margin-top: 0; }
+.account-grid { grid-template-columns: minmax(0, 1.65fr) minmax(230px, .8fr); gap: 40px; align-items: start; }
+.account-orders { min-width: 0; border-radius: 16px; box-shadow: none; }
+.account-orders > h2 { font-size: 1.3rem; margin-bottom: 4px; }
+.account-access { padding: 20px 0; min-width: 0; }
+.account-access h2 { font-size: 1.2rem; margin-bottom: 12px; }
+.account-access .email { font-size: .9rem; color: #345765; }
+.account-access .button { font-size: .86rem; gap: 12px; min-height: 44px; padding: 12px 18px; }
+.account-access form .button { background: transparent; border: 1px solid #bdcfca; margin-top: 8px; }
+@media (max-width: 800px) {
+  .account-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .account-orders { padding: 22px; }
+  .account-access { border-top: 1px solid #d9e1dc; }
+  .account-heading { margin-bottom: 24px; }
+  .account-heading h1 { font-size: 2.25rem; }
+}

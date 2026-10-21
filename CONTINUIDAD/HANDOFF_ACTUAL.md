@@ -1,12 +1,24 @@
-# Candidato en revisi?n ? 21 octubre 2026
+# Beta: revisión de interfaz — 21 octubre 2026
 
-Miguel aprob? el hito 1 del dise?o de recogida. Rama codex/pickup-readiness-20261021 en checkout enlazado C:/Users/hp/Documents/ChatGPT/fudiBOX/pickup-readiness, asociado al repositorio activo de Desktop. No es otra app del prototipo hist?rico.
+## Publicación autorizada
 
-Controles de modalidad, seguimiento de cliente, Mi panel por permisos, monitoreo expl?cito y launcher de toda la suite preparados. Leer docs/pickup-readiness-release.md para orden de migraci?n/despliegue y pruebas pendientes. No publicado; migraci?n nueva no aplicada a Supabase. Recepci?n general permanece cerrada. No crear permisos/pedidos reales autom?ticamente.
+Miguel aprobó la interfaz y el cambio de marca a “Restaurantes Locales”; después autorizó commit y push a main. La pausa anterior queda revocada. Integrar en una sola rama main, sin PR ni rama remota adicional. Comprobar Git y la web para confirmar el commit publicado.
 
-Incidencias y conciliaci?n requieren el hito 2 y decidir pol?ticas con Miguel; el redise?o con frontend-design sigue despu?s de verificar funcionalidad. La portada aprobada se conserva.
+Se resolvió la compatibilidad con la base sin migración: readPublicBusiness conserva el catálogo y deshabilita ambas modalidades/recepción cuando faltan las columnas nuevas. No oculta otros errores ni anuncia piloto con recogida deshabilitada. La migración de modalidades sigue sin aplicar; no habilitar pedidos hasta aplicarla y verificarla. Build/TypeScript y las 34 pruebas pasaron en el servidor local usando el Supabase alojado real; cinco suites SQL aisladas también pasaron. No se crearon pedidos reales ni permisos.
 
-La verificaci?n final de esta rama se documentar? en docs/pickup-readiness-verification.md. Los resultados de abajo pertenecen al cierre hist?rico del 9 de octubre.
+La integración se publica mediante Git/Vercel con configuración alojada, nunca mediante el build sintético de preview. Las notas anteriores de pausa y candidato de abajo se conservan como antecedentes.
+
+Miguel confirmó que fudiBOX sigue en BETA y no hay restaurantes reales operando. Prefiere conservar una sola rama al integrar. Después pidió pausar el commit/push para mejorar primero UI/UX con Impeccable y las skills oficiales de Emil Kowalski; aprobó la dirección visual y se implementó sin nuevos commits ni publicación.
+
+Trabajo preparado en C:/Users/hp/Documents/ChatGPT/fudiBOX/pickup-readiness, checkout enlazado del repositorio activo de Desktop; no es otra app del prototipo histórico. El hito funcional previo está en el commit local b50ba97; esta mejora visual está sin commit para revisión. Main y origin/main no recibieron esos cambios.
+
+Interfaz: menú móvil en filas legibles, carrito inferior accesible y diálogos nativos con movimiento breve sólo al usar puntero. Sin solicitar datos personales cuando pedidos están cerrados. Cuenta prioriza seguimiento y errores sobre ajustes. Panel compacto con estados y detalles de monitoreo. Se conservan Fudi y la paleta aprobada. Dirección documentada en DESIGN.md.
+
+Build/TypeScript, 30 pruebas con backend local sintético y cinco suites SQL aisladas pasaron. Detector de Impeccable y revisión independiente sin hallazgos materiales pendientes. Evidencia y límites: docs/frontend-polish-verification.md. Preview local en puerto 3011 con fixture en 54329; nunca publicar el build de fixture.
+
+Antes de retomar push: la consulta de Supabase del 21 octubre confirmó que pickup_enabled/delivery_enabled aún no existen. Aplicar la migración nueva de forma autorizada antes de publicar el código que las consulta, o preparar y verificar compatibilidad segura. No repetir migraciones antiguas ni abrir recepción. No hay herramienta Supabase conectada en esta sesión.
+
+La revisión visual fue aprobada; commit, merge y push están autorizados como indica la sección más reciente. Incidencias y conciliación son trabajo posterior. Los apartados de abajo son antecedentes del 9 octubre y no sustituyen estas instrucciones actuales.
 
 ---
 

@@ -2,15 +2,16 @@ import { notFound } from "next/navigation";
 import { serverClient } from "@/lib/supabase/server";
 import { Catalog } from "./catalog";
 import type { Product } from "@/lib/catalog";
+import { readPublicBusiness } from "@/lib/public-business";
 export const dynamic = "force-dynamic";
 export default async function Chicanito() {
  const client=await serverClient();
- const {data:business,error:businessError}=await client.from("businesses").select("id,name,slug,logo_path,address,map_url,accepting_orders,pickup_enabled,delivery_enabled").eq("slug","chicken-chicanito").single();
+ const {data:business,error:businessError}=await readPublicBusiness(client,"chicken-chicanito");
  if(businessError) throw new Error("No pudimos consultar el negocio.");
  if(!business) notFound();
  const {data:products,error}=await client.from("products").select("id,name,description,price_cents,image_path,category,sort_order,available,option_groups").eq("business_id",business.id).order("sort_order");
  if(error) throw new Error("No pudimos consultar el menú.");
  const {data:{user}}=await client.auth.getUser();
  const {data:pickupPilot}=user?await client.rpc("my_pickup_pilot",{p_business_id:business.id}):{data:false};
- return <Catalog business={business} products={(products??[]) as Product[]} signedIn={!!user} pickupPilot={pickupPilot===true}/>;
+ return <Catalog business={business} products={(products??[]) as Product[]} signedIn={!!user} pickupPilot={pickupPilot===true&&business.pickup_enabled}/>;
 }

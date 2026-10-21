@@ -62,7 +62,7 @@ begin
  end if;
  if (p_payload->>'delivery_method'='pickup' and not b.pickup_enabled)
  or (p_payload->>'delivery_method'='delivery' and not b.delivery_enabled) then
-  raise exception 'Esta forma de entrega todav?a no est? disponible.';
+  raise exception 'Esta forma de entrega todavía no está disponible.';
  end if;
  if b.address is null or b.latitude is null or b.longitude is null then raise exception 'Falta configurar el punto de recogida.'; end if;
  if p_payload->>'delivery_method'='delivery' then

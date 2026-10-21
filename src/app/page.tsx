@@ -8,7 +8,7 @@ export default async function Home() {
   return <>
     <section className="food-hero">
       <div className="hero-copy">
-        <span className="eyebrow">EL SABOR DE JOJUTLA</span>
+        <span className="eyebrow">EL SABOR LOCAL</span>
         <h1>La mesa <em>está puesta.</em></h1>
         <p>El sabor de los restaurantes de tu zona, en un solo lugar. Explora sus menús y elige tu próximo pedido.</p>
         <Link className="button" href="#restaurantes">Ver restaurantes <span aria-hidden="true">↗</span></Link>

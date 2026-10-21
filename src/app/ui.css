@@ -1,0 +1,48 @@
+/* Shared interaction tokens extend the approved fudiBOX palette and typography. */
+:root {
+  --surface: #fffdf8;
+  --ink-soft: #425f66;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --motion-press: 120ms;
+  --motion-dialog: 240ms;
+}
+::selection { background: #ffd5b5; color: var(--petrol); }
+input, textarea { caret-color: var(--petrol); }
+html { scrollbar-color: #8da6a8 var(--ivory); }
+h1, h2, h3 { letter-spacing: -.035em; text-wrap: balance; }
+button, .button, .nav-link { touch-action: manipulation; }
+button, .button { user-select: none; }
+button:disabled { cursor: not-allowed; }
+input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible {
+  outline: 3px solid #0b8891;
+  outline-offset: 3px;
+}
+.button { transition: background-color 120ms ease, transform var(--motion-press) var(--ease-out); }
+/* Press motion belongs to pointer input; keyboard activation remains immediate. */
+.button:active:not(:disabled):not(:focus-visible) { transform: scale(.98); transition-duration: 0ms; }
+.button:disabled { transform: none; }
+.operator-shell { padding-top: 24px; }
+.operator-shell > .operator-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.operator-heading h1 { font-size: clamp(1.7rem, 3vw, 2.25rem); margin: 0; }
+.operator-heading > a { font-size: .85rem; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
+.operator-nav { flex-wrap: nowrap; overflow-x: auto; gap: 8px; padding-block: 4px 10px; margin-block: 14px; }
+.operator-nav a, .operator-nav button { padding: 10px 14px; min-height: 44px; font-size: .85rem; white-space: nowrap; }
+.operator-nav form { flex-shrink: 0; }
+.operator-shell > .menu-notice { font-size: .82rem; padding: 12px 16px; margin-top: 10px; }
+.operator-content > p { font-size: .85rem; line-height: 1.5; margin: 0; }
+.button > span:last-child { color: inherit; }
+@media (hover: none) {
+  .button:hover { background: var(--petrol); }
+  .button.secondary:hover { background: #edf2f1; }
+}
+@media (max-width: 700px) {
+  .checkout-form input, .checkout-form select, .checkout-form textarea,
+  .quantity-label input, .operator-form input, .operator-form select, .operator-form textarea {
+    font-size: 16px;
+  }
+  .header { padding-top: max(15px, env(safe-area-inset-top)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button:active:not(:disabled):not(:focus-visible) { transform: none; }
+}

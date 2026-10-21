@@ -1,4 +1,8 @@
 # fudiBOX
+
+## Beta — publicación del 21 octubre 2026
+
+Miguel autorizó integrar y publicar en una sola rama main. Interfaz refinada con Impeccable/Emil y marca “Restaurantes Locales”. Catálogo compatible con el esquema anterior: si faltan las columnas de modalidades, permite explorar pero mantiene pedidos cerrados. La migración nueva sigue pendiente antes de habilitar pedidos. Build/TypeScript, 34 pruebas y cinco suites SQL aisladas verificadas; ver docs/pickup-readiness-release.md y CONTINUIDAD/HANDOFF_ACTUAL.md. Los estados de candidato inferiores son antecedentes.
 Marketplace local para Jojutla y alrededores. Primer negocio: Chicken Chicanito.
 
 ## Manual de uso y pruebas

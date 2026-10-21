@@ -1,1 +1,40 @@
-.order-tabs,.order-counts,.order-watch{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.order-tabs a{padding:12px 18px;border:1px solid var(--line);border-radius:12px}.order-tabs a[aria-current=page]{background:var(--petrol);color:white}.order-counts{padding:20px 0}.order-watch{padding:18px;border:1px solid var(--line);border-radius:16px}.order-watch p{width:100%;margin:0;font-size:.85rem}.order-card .button{min-height:48px}.order-card small{display:block;margin-top:12px}.order-card>p:first-child{overflow-wrap:anywhere}@media(max-width:600px){.order-card .button{width:100%;text-align:center}.order-watch .button{flex:1}}
+.order-tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.order-tabs a{display:flex;align-items:center;min-height:48px;padding:12px 20px;border-bottom:2px solid transparent;color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:600}
+.order-tabs a[aria-current=page]{color:var(--petrol);border-bottom-color:var(--orange)}
+.order-counts{display:flex;gap:12px 24px;flex-wrap:wrap;align-items:center;padding:8px 0;font-size:.95rem;font-variant-numeric:tabular-nums}
+.order-counts strong{color:var(--petrol)}
+.order-counts span{color:var(--muted)}
+.order-watch{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px 24px;padding:20px;background:#edf2f1;border:1px solid #cbdad6;border-radius:12px}
+.order-watch-status{min-width:0}
+.order-watch p{margin:0;line-height:1.6}
+.order-watch-label{display:flex;align-items:center;gap:9px;font-size:.9rem;font-weight:700;color:var(--petrol)}
+.order-watch-dot{width:8px;height:8px;flex:none;border-radius:50%;background:#28644d}
+.order-watch-time{font-size:.78rem;color:#405e62;font-variant-numeric:tabular-nums;margin-top:3px!important;overflow-wrap:anywhere}
+.order-watch-hint{font-size:.85rem;margin-top:6px!important}
+.order-watch[data-state=paused]{background:#fff0d8;border-color:#e3c494}
+.order-watch[data-state=paused] .order-watch-dot{background:#99500f}
+.order-watch[data-state=hidden] .order-watch-dot{background:#54686c}
+.order-watch[data-state=error]{background:#fff1eb;border-color:#e5b9a5}
+.order-watch[data-state=error] .order-watch-label,.order-watch[data-state=error] .order-watch-hint{color:#923a15}
+.order-watch[data-state=error] .order-watch-dot{background:#923a15}
+.order-watch-actions{display:flex;gap:8px;flex-wrap:wrap}
+.order-watch .button{margin:0;min-height:44px;padding:11px 14px;font-size:.8rem;white-space:normal}
+.order-watch .button[aria-pressed=true]{background:var(--petrol);color:#fff}
+.order-watch .button:disabled{cursor:wait;opacity:.65}
+.order-watch-notice{grid-column:1/-1;font-size:.85rem;font-weight:600}
+.order-watch-details{grid-column:1/-1;border-top:1px solid #cbdad6;padding-top:8px;color:#405e62}
+.order-watch-details summary{display:list-item;width:fit-content;min-height:44px;padding:11px 0;font-size:.78rem;font-weight:500;cursor:pointer;text-underline-offset:4px}
+.order-watch-details p{max-width:72ch;padding-bottom:4px;font-size:.8rem}
+.order-tabs a:focus-visible,.order-watch summary:focus-visible,.order-watch .button:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+.order-card{padding:28px;border-radius:16px;box-shadow:none}
+.order-card h2{font-size:clamp(1.3rem,2.5vw,1.7rem);margin:12px 0 8px}
+.order-card .button{min-height:48px}
+.order-card small{display:block;margin-top:12px;max-width:65ch}
+.order-card>p:first-child{margin-top:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.order-card>strong{display:block;margin-top:20px;font-size:1.2rem;font-variant-numeric:tabular-nums}
+.order-card>ul{padding-left:20px;margin:24px 0}
+.order-card>ul>li{padding-bottom:10px;line-height:1.6}
+.order-card .operator-form{border-top:1px solid var(--line);padding-top:20px;margin:24px 0 0}
+@media(hover:hover) and (pointer:fine){.order-tabs a:hover{color:var(--petrol);background:#edf2f1}.order-watch-details summary:hover{text-decoration:underline}}
+@media(max-width:850px){.order-watch{grid-template-columns:minmax(0,1fr)}.order-watch-actions{justify-content:flex-start}}
+@media(max-width:600px){.order-card{padding:22px}.order-card .button{width:100%;text-align:center}.order-counts{gap:8px 16px;font-size:.85rem}.order-watch{padding:16px;gap:12px}.order-watch-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.order-watch .button{width:100%;font-size:.78rem;padding:11px 8px}.order-tabs a{padding:12px 16px}}

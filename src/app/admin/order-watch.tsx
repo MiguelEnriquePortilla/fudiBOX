@@ -63,17 +63,23 @@ export function OrderWatch({ ids }: { ids: string[] }) {
   };
  }, [check, monitor, update]);
  useEffect(() => () => { void audio.current?.close(); }, []);
- const state = monitor.paused ? "Monitoreo pausado: editaste un formulario. Reanuda cuando termines para actualizar los pedidos."
-  : !monitor.visible ? "Monitoreo detenido mientras el panel está oculto."
-  : monitor.pending ? "Revisando pedidos…"
-  : monitor.failed ? "Falló la revisión. La información puede estar desactualizada."
-  : "Monitoreo activo con el panel visible.";
- return <div className="order-watch">
-  <button className="button secondary" type="button" aria-pressed={sound} onClick={toggle}>{sound ? "Sonido activado" : "Activar sonido"}</button>
-  <button className="button secondary" type="button" disabled={monitor.pending || pending} onClick={() => { monitor.resume(); update(); void check(); }}>{monitor.pending || pending ? "Actualizando…" : monitor.paused ? "Reanudar monitoreo" : "Actualizar pedidos"}</button>
-  <p role="status" aria-live="polite">{state}</p>
-  <p>{monitor.checkedAt ? <>Última revisión correcta: <time dateTime={monitor.checkedAt}>{new Date(monitor.checkedAt).toLocaleString("es-MX", { timeZone: "America/Mexico_City" })}</time> (hora de Ciudad de México).</> : "Aún no se ha completado una revisión automática."}</p>
-  <p>Se revisan cada 20 segundos con el panel visible. La revisión se pausa mientras editas un formulario. El sonido requiere mantener esta pantalla abierta; no avisa con el teléfono bloqueado o la app cerrada.</p>
-  <p role="status">{notice}</p>
- </div>;
+ const state = monitor.paused ? "paused" : !monitor.visible ? "hidden" : monitor.failed && !monitor.pending ? "error" : "active";
+ const label = state === "paused" ? "Monitoreo pausado" : state === "hidden" ? "Panel oculto · revisión en pausa" : state === "error" ? "No se pudo revisar" : monitor.pending ? "Revisando pedidos…" : "Monitoreo activo";
+ return <section className="order-watch" data-state={state} aria-label="Monitoreo de pedidos">
+  <div className="order-watch-status">
+   <p className="order-watch-label" role="status" aria-live="polite"><span className="order-watch-dot" aria-hidden="true"/>{label}</p>
+   <p className="order-watch-time">{monitor.checkedAt ? <>Última revisión correcta: <time dateTime={monitor.checkedAt}>{new Date(monitor.checkedAt).toLocaleString("es-MX", { timeZone: "America/Mexico_City", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", second: "2-digit" })}</time> · CDMX</> : "Esperando la primera revisión"}</p>
+   {state === "paused" && <p className="order-watch-hint">Termina de editar y reanuda para actualizar.</p>}
+   {state === "error" && <p className="order-watch-hint">Los datos pueden estar desactualizados. Intenta actualizar.</p>}
+  </div>
+  <div className="order-watch-actions">
+   <button className="button secondary" type="button" aria-pressed={sound} onClick={toggle}>{sound ? "Sonido activado" : "Activar sonido"}</button>
+   <button className="button secondary" type="button" disabled={monitor.pending || pending} onClick={() => { monitor.resume(); update(); void check(); }}>{monitor.pending || pending ? "Actualizando…" : monitor.paused ? "Reanudar monitoreo" : "Actualizar pedidos"}</button>
+  </div>
+  {notice && <p className="order-watch-notice" role="status">{notice}</p>}
+  <details className="order-watch-details">
+   <summary>Cómo funciona el monitoreo</summary>
+   <p>Revisa cada 20 segundos con el panel visible y se pausa al editar un formulario. El sonido avisa de pedidos nuevos por confirmar mientras esta pantalla está abierta; no avisa con el teléfono bloqueado o la app cerrada.</p>
+  </details>
+ </section>;
 }
