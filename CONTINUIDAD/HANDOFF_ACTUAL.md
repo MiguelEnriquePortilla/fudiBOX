@@ -2,6 +2,14 @@
 
 Actualizado: **21 octubre 2026**. Frase de entrada: **Open fudiBOX Project**. Leer README.md y AGENTS.md. Este estado prevalece sobre sesiones anteriores.
 
+## Cierre definitivo · 21 octubre 2026
+
+Último cambio funcional publicado: **d5cd689**, sobre main. Vercel confirmó success y una lectura HTTPS de https://fudibox.app/acceso confirmó Fudi completo, mailto:thefudibox@gmail.com y «Instalar fudiBOX», sin el antiguo banner. README, DESIGN y guía registran las decisiones. Servidores locales de esta revisión (3012/3013) detenidos al cerrar; los enlaces de preview anteriores requieren volver a iniciar servidor.
+
+Recogida sigue en beta cerrada, sin restaurantes reales operando. Migración 202610210001_order_methods.sql y certificado de www pendientes. Contacto público YA definido: thefudibox@gmail.com; no volver a preguntar ni mostrar soporte no disponible. Aún faltan políticas operativas y pruebas reales; publicar la interfaz no abre recepción ni instala SQL.
+
+Retomar con **Open fudiBOX Project**. Leer este handoff y README, comprobar Git y usar el principal C:/Users/hp/Desktop/FUDIGPT/fudiBOX. No quedan ajustes visuales aprobados sin publicar. La siguiente sesión no necesita volver a revisar Fudi, Google o posición de instalación.
+
 ## Decisiones y ubicación
 
 BETA sin restaurantes reales operando, según Miguel. Recepción general cerrada. Chicanito es referencia de desarrollo; antiguos pedidos/pruebas no establecen negocio activo.
@@ -10,7 +18,7 @@ Sitio principal: https://fudibox.app. GitHub: https://github.com/MiguelEnriquePo
 
 Principal local: C:/Users/hp/Desktop/FUDIGPT/fudiBOX. Worktree de apoyo: C:/Users/hp/Documents/ChatGPT/fudiBOX/pickup-readiness, sin rama propia tras integrar. Su padre es un prototipo histórico. Revisar Git antes de modificar; conservar archivos ignorados de entorno y herramientas.
 
-Último cambio funcional publicado: ed3999ff87eef8203c8dc3da109aa28df195a394, «Polish beta UI and use Restaurantes Locales branding», incluye b50ba97 de controles/seguimiento. Rama temporal eliminada tras integración. Los commits posteriores de documentación no cambian ese identificador funcional.
+Cambio funcional previo: ed3999ff87eef8203c8dc3da109aa28df195a394, «Polish beta UI and use Restaurantes Locales branding», incluye b50ba97 de controles/seguimiento. Rama temporal eliminada tras integración. Los commits posteriores de documentación no cambian ese identificador funcional.
 
 Texto aprobado «Restaurantes Locales», retirando «Restaurantes en Jojutla» de presentación general. Esto no modifica direcciones de negocio. Identidad aprobada: Fudi completo en motocicleta, patrón crema, petróleo/naranja, «La mesa está puesta.», español mexicano claro. Ver DESIGN.md.
 
@@ -70,10 +78,10 @@ Habilidades oficiales instaladas: Impeccable, Emil Kowalski (emil-design-eng, an
 
 Actualizar este archivo y evidencia al cerrar. Antecedentes reemplazados: sesiones/2026-10-21-antes-de-consolidar/. No borrar historia ni usarla como estado vigente.
 
-## Ajuste de acceso preparado después del cierre
+## Ajuste de acceso publicado
 
-21 octubre: Miguel aprobó corregir el símbolo de Google y completar a Fudi. Cambios aprobados para publicar en main: acceso usa fudi-repa-v3-cuerpo-completo.png (generado a partir del original, transparente, pantalón y botas) y google-g-official.png descargado de https://developers.google.com/static/identity/images/g-logo.png. Se conserva el original y el flujo OAuth. CSS específico evita ilustración cortada/superpuesta en móvil. TypeScript comprobado; imágenes cargadas y sin desbordamiento horizontal a 390 px. Vista previa http://127.0.0.1:3012/acceso; usar 127 para revisar sin cerrar la sesión localhost de Miguel. Miguel revisó y aprobó la imagen y autorizó commit/push. Estos cambios suceden a ed3999f.
+21 octubre: Miguel aprobó corregir el símbolo de Google y completar a Fudi. Publicado en main mediante d5cd689: acceso usa fudi-repa-v3-cuerpo-completo.png (generado a partir del original, transparente, pantalón y botas) y google-g-official.png descargado de https://developers.google.com/static/identity/images/g-logo.png. Se conserva el original y el flujo OAuth. CSS específico evita ilustración cortada/superpuesta en móvil. TypeScript comprobado; imágenes cargadas y sin desbordamiento horizontal a 390 px. Vista previa http://127.0.0.1:3012/acceso; usar 127 para revisar sin cerrar la sesión localhost de Miguel. Miguel revisó y aprobó la imagen y autorizó commit/push. Estos cambios suceden a ed3999f.
 
-## Pie de página y contacto preparados
+## Pie de página y contacto publicados
 
-Miguel aprobó el aspecto de Fudi y Google. Pidió retirar el banner de instalación y confirmó thefudibox@gmail.com como correo público. Cambios locales: instalación discreta en el pie de página junto a Contáctanos (mailto); la ayuda de pedidos usa ese mismo correo. Se conservan instrucciones por plataforma y evento nativo de instalación; sin instalar nada durante la comprobación. Este correo sustituye el pendiente anterior de configurar contacto visible. Continúan pendientes las políticas operativas y demás verificaciones antes de abrir. Miguel aprobó todo y autorizó commit/push. Build de producción y 34 pruebas pasaron con TEST_BASE_URL=http://localhost:3013. La primera ejecución por 127.0.0.1 no coincidió con el origen localhost que usa el callback de Next; usando el origen local recomendado pasó la suite.
+Miguel aprobó el aspecto de Fudi y Google. Pidió retirar el banner de instalación y confirmó thefudibox@gmail.com como correo público. Publicado en d5cd689: instalación discreta en el pie de página junto a Contáctanos (mailto); la ayuda de pedidos usa ese mismo correo. Se conservan instrucciones por plataforma y evento nativo de instalación; sin instalar nada durante la comprobación. Este correo sustituye el pendiente anterior de configurar contacto visible. Continúan pendientes las políticas operativas y demás verificaciones antes de abrir. Miguel aprobó todo y autorizó commit/push. Build de producción y 34 pruebas pasaron con TEST_BASE_URL=http://localhost:3013. La primera ejecución por 127.0.0.1 no coincidió con el origen localhost que usa el callback de Next; usando el origen local recomendado pasó la suite.

@@ -36,3 +36,5 @@ Leer docs/pickup-readiness-release.md desde la raíz. Aplicar de forma controlad
 Principal C:/Users/hp/Desktop/FUDIGPT/fudiBOX; rama main, Vercel publica al subir. Supabase migra por separado. Google ya se comprobó históricamente: no repetir configuración ni cerrar sesiones sin motivo demostrado. Nunca secretos privilegiados en navegador/Git.
 
 run-fudibox.ps1 ofrece dev/build/start/typecheck/test. TEST_BASE_URL selecciona servidor para HTTP. El runner descubre tests/*.test.mjs. tests/run-sql.mjs es SQL aislado sin conexión Supabase; ver guía de publicación. Fixtures visuales son simulaciones; no equivalen a un recorrido autenticado alojado.
+
+Contacto confirmado el 21 de octubre: thefudibox@gmail.com. Disponible desde Contáctanos en el pie y desde ayuda de pedidos. Instalación discreta junto a Contáctanos; se retiró el banner superior. Acceso con Fudi completo y símbolo oficial de Google. Publicado en d5cd689; Vercel success y contenido alojado comprobados. Vista previa local detenida al cerrar.

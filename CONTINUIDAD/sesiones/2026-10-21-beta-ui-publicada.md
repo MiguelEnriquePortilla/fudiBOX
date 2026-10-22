@@ -9,3 +9,5 @@ Documentación consolidada por petición de Miguel: README, AGENTS, handoff, pla
 Incidencia adicional: Chrome rechazó www.fudibox.app. Comprobación TLS externa: sin www 200, con www certificado incompatible con hostname. Diagnóstico/configuración definitiva pendiente, sin cambios DNS. Usar https://fudibox.app.
 
 Estado al cerrar: BETA sin restaurantes reales operando, recepción cerrada. Migración 202610210001_order_methods.sql pendiente. Próximos pasos y herramientas en HANDOFF_ACTUAL.md; actualizarlo al continuar.
+
+Cierre posterior de publicación: d5cd689 publicado en main. Vercel success confirmado; HTML alojado de /acceso contiene Fudi completo, correo thefudibox@gmail.com e instalación en pie, sin banner anterior. Build/TypeScript y 34 pruebas contra servidor local de producción pasaron. No hubo cambios SQL, permisos piloto ni apertura. Servidores locales 3012/3013 detenidos; documentación de continuidad actualizada para retomar con «Open fudiBOX Project».

@@ -7,7 +7,7 @@ Leer [AGENTS.md](AGENTS.md) y [CONTINUIDAD/HANDOFF_ACTUAL.md](CONTINUIDAD/HANDOF
 
 **BETA, sin restaurantes reales operando. Recepción general de pedidos cerrada.** Chicanito y su catálogo son referencias de desarrollo. Los registros históricos no prueban operación comercial actual.
 
-Publicado: https://fudibox.app (sin www). Último cambio funcional publicado: `ed3999f`, interfaz aprobada y texto «Restaurantes Locales». Repositorio: https://github.com/MiguelEnriquePortilla/fudiBOX. Rama única de trabajo: `main`; sus pushes publican automáticamente mediante Vercel. Un push no ejecuta migraciones de Supabase.
+Publicado: https://fudibox.app (sin www). Último cambio funcional publicado: `d5cd689`, Fudi completo, Google oficial, instalación en el pie y correo público. Vercel y contenido publicado verificados. Conserva «Restaurantes Locales». Repositorio: https://github.com/MiguelEnriquePortilla/fudiBOX. Rama única de trabajo: `main`; sus pushes publican automáticamente mediante Vercel. Un push no ejecuta migraciones de Supabase.
 
 El 21 de octubre se comprobó: dominio sin www devuelve 200; www.fudibox.app falla validación TLS por nombre de certificado incompatible. Pendiente corregir asociación/certificado/redirección del dominio www; no saltarse el aviso de Chrome.
 
@@ -25,7 +25,7 @@ Panel y cuenta consultan cada 20 segundos mientras están visibles. Sonido opcio
 
 **Migración `202610210001_order_methods.sql` versionada, pero NO aplicada al Supabase alojado.** El lector de catálogo reconoce específicamente las columnas ausentes y cierra recepción/modalidades. Esa compatibilidad no instala las nuevas restricciones SQL.
 
-Antes de abrir: migración controlada, soporte, políticas de incidencias, recorrido autenticado y teléfonos físicos. Domicilio, códigos, conciliación, pagos y correcciones posteriores pendientes. [PLAN.md](PLAN.md).
+Antes de abrir: migración controlada, políticas de incidencias, recorrido autenticado y teléfonos físicos. Domicilio, códigos, conciliación, pagos y correcciones posteriores pendientes. [PLAN.md](PLAN.md).
 
 ## Desarrollo
 
