@@ -20,8 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <span className="location">Restaurantes Locales</span>
       <Link className="nav-link" href="/cuenta">Mi cuenta <span aria-hidden="true">↗</span></Link>
     </header>
-    <InstallApp />
     <main>{children}</main>
-    <footer><strong>Tus restaurantes, más cerca.</strong><span>Versión de prueba · Pedidos aún no disponibles</span></footer>
+    <footer><div className="footer-info"><strong>Tus restaurantes, más cerca.</strong><span>Versión de prueba · Pedidos aún no disponibles</span></div><nav className="footer-links" aria-label="Información de fudiBOX"><a className="footer-link" href="mailto:thefudibox@gmail.com">Contáctanos</a><InstallApp /></nav></footer>
   </body></html>;
 }

@@ -69,3 +69,11 @@ Visual: tests/fixtures/read-only-backend.mjs en loopback54329 rechaza escrituras
 Habilidades oficiales instaladas: Impeccable, Emil Kowalski (emil-design-eng, animate, mobile-native, review-animations), frontend-design y Superpowers. No hooks ni cambio de plataforma. Datos reales, mensajes y migraciones requieren el alcance/autorización correspondiente, no se derivan de abrir contexto.
 
 Actualizar este archivo y evidencia al cerrar. Antecedentes reemplazados: sesiones/2026-10-21-antes-de-consolidar/. No borrar historia ni usarla como estado vigente.
+
+## Ajuste de acceso preparado después del cierre
+
+21 octubre: Miguel aprobó corregir el símbolo de Google y completar a Fudi. Cambios aprobados para publicar en main: acceso usa fudi-repa-v3-cuerpo-completo.png (generado a partir del original, transparente, pantalón y botas) y google-g-official.png descargado de https://developers.google.com/static/identity/images/g-logo.png. Se conserva el original y el flujo OAuth. CSS específico evita ilustración cortada/superpuesta en móvil. TypeScript comprobado; imágenes cargadas y sin desbordamiento horizontal a 390 px. Vista previa http://127.0.0.1:3012/acceso; usar 127 para revisar sin cerrar la sesión localhost de Miguel. Miguel revisó y aprobó la imagen y autorizó commit/push. Estos cambios suceden a ed3999f.
+
+## Pie de página y contacto preparados
+
+Miguel aprobó el aspecto de Fudi y Google. Pidió retirar el banner de instalación y confirmó thefudibox@gmail.com como correo público. Cambios locales: instalación discreta en el pie de página junto a Contáctanos (mailto); la ayuda de pedidos usa ese mismo correo. Se conservan instrucciones por plataforma y evento nativo de instalación; sin instalar nada durante la comprobación. Este correo sustituye el pendiente anterior de configurar contacto visible. Continúan pendientes las políticas operativas y demás verificaciones antes de abrir. Miguel aprobó todo y autorizó commit/push. Build de producción y 34 pruebas pasaron con TEST_BASE_URL=http://localhost:3013. La primera ejecución por 127.0.0.1 no coincidió con el origen localhost que usa el callback de Next; usando el origen local recomendado pasó la suite.

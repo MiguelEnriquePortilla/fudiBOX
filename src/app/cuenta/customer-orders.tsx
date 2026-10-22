@@ -58,6 +58,6 @@ export function CustomerOrders({initial}:{initial:CustomerSnapshot|null}){
  {['requested','awaiting_quote','quoted'].includes(o.status)&&<form className="tracking-cancel" action={cancelMyOrder} onFocus={pause} onPointerDown={pause} onSubmit={pause}><input type="hidden" name="order_id" value={o.id}/><button type="submit">Cancelar pedido</button></form>}
  </section>;
  })}</div>
- <aside className="tracking-help"><h3>¿Necesitas ayuda?</h3><p>El contacto de soporte de fudiBOX aún no está disponible en esta página.</p></aside>
+ <aside className="tracking-help"><h3>¿Necesitas ayuda?</h3><p>Escríbenos a <a href="mailto:thefudibox@gmail.com">thefudibox@gmail.com</a>.</p></aside>
  </div>;
 }

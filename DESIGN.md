@@ -25,3 +25,7 @@ Pointer presses may receive immediate subtle scale feedback with a 120ms release
 ## Verification boundaries
 
 Inspect phone, intermediate and wide layouts, native dialog keyboard behavior, long content, empty/cancelled/error states and failure recovery. Local synthetic sessions verify application rendering only. Physical phone behavior and hosted authentication/database rules require their own evidence. The user approved this pass, requested “Restaurantes Locales” branding, and authorized committing and pushing to main.
+
+## Acceso y pie de página · 21 octubre
+
+Fudi de cuerpo completo aprobado para acceso, conservando casco, rostro, uniforme y mochila; el original sigue disponible. Google usa su recurso oficial multicolor. Instalación es una acción discreta en el pie junto a Contáctanos, con instrucciones nativas conservadas. Correo público confirmado por Miguel: thefudibox@gmail.com, también disponible en ayuda de pedidos. No reinstalar el banner superior por rutina.

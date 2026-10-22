@@ -30,3 +30,8 @@ body:has(.operator-shell)>.header,body:has(.operator-shell)>footer{display:none}
 .operator-shell{padding:32px 0 70px}.operator-heading{display:flex;justify-content:space-between;align-items:center;gap:24px}.operator-heading h1{font-size:clamp(2rem,4vw,3rem);margin-bottom:12px}
 .operator-nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:24px 0}.operator-nav a,.operator-nav button{display:block;padding:12px 18px;border:1px solid var(--line);background:white;border-radius:10px;text-decoration:none;color:var(--petrol);font:inherit}.operator-nav a[aria-current]{background:var(--petrol);color:white}.operator-nav form{margin-left:auto}
 .operator-content{display:grid;gap:18px}.operator-content summary{cursor:pointer;font-weight:700;line-height:1.5}.operator-form{max-width:650px;display:grid;gap:16px;margin:24px 0}.operator-form label{display:grid;gap:7px;font-weight:600}.operator-form input,.operator-form textarea,.operator-form select{width:100%;padding:12px;border:1px solid #acbcb9;border-radius:8px;background:white;color:var(--petrol);font:inherit}.operator-form .check{display:flex;align-items:center;gap:10px}.operator-form .check input{width:20px;height:20px}.discovery .merchant{margin-bottom:18px}@media(max-width:600px){.operator-heading{display:block}.operator-nav form{margin-left:0}}
+
+/* Login illustration and official provider mark. */
+.google-g img{display:block;width:20px;height:20px;object-fit:contain}
+.auth-story img{width:260px;height:350px;object-fit:contain;margin:12px auto 0}
+@media(max-width:800px){.auth-story{padding-right:0}.auth-story h1{font-size:clamp(2.5rem,8vw,3rem)}.auth-story>p{max-width:100%}.auth-story img{position:static;width:190px;height:250px;margin:16px auto 0}}

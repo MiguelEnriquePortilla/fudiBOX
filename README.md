@@ -52,3 +52,5 @@ Evidencia del cierre funcional del 21 de octubre: build y TypeScript correctos, 
 - [Publicación y migración pendiente](docs/pickup-readiness-release.md).
 - [Diseño aprobado](DESIGN.md) y [verificación visual](docs/frontend-polish-verification.md).
 - [Archivo de continuidad](CONTINUIDAD/README.md): antecedentes fechados, subordinados al estado vigente.
+
+Contacto público confirmado: thefudibox@gmail.com. La instalación está disponible en el pie junto a Contáctanos. El acceso usa Fudi de cuerpo completo y el símbolo oficial multicolor de Google, aprobados el 21 de octubre.

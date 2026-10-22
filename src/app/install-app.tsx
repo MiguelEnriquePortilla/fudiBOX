@@ -41,10 +41,8 @@ export function InstallApp() {
   finally { pending.current = null; setReady(false); setBusy(false); }
  }
  if (installed || pathname.startsWith("/admin") || pathname.startsWith("/auth/")) return null;
- return <aside className="pwa-install" aria-label="Instalar fudiBOX">
-  <img src="/icons/icon-192.png" width="44" height="44" alt="" />
-  <p><strong>fudiBOX, a un toque</strong><span>Agrega la app a tu pantalla de inicio.</span></p>
-  <button type="button" className="button" onClick={() => dialog.current?.showModal()}>Instalar app</button>
+ return <>
+  <button type="button" className="footer-link" onClick={() => dialog.current?.showModal()}>Instalar fudiBOX</button>
   <dialog ref={dialog} className="pwa-dialog" aria-labelledby="pwa-title">
    <button type="button" className="dialog-close" aria-label="Cerrar instrucciones" onClick={() => dialog.current?.close()}>×</button>
    <img src="/icons/icon-192.png" width="72" height="72" alt="" />
@@ -55,5 +53,5 @@ export function InstallApp() {
    <p className="fine">Si abriste el enlace desde WhatsApp u otra app, ábrelo en Chrome o Safari. En iPhone: Compartir → Agregar a pantalla de inicio.</p>
    <p role="status">{message}</p>
   </dialog>
- </aside>;
+ </>;
 }
