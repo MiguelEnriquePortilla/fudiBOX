@@ -1,3 +1,5 @@
+> Antecedente de marca de septiembre. Para decisiones vigentes leer [DESIGN.md](../DESIGN.md) y [el handoff](../CONTINUIDAD/HANDOFF_ACTUAL.md). La interfaz publicada usa «Restaurantes Locales» y español claro; ejemplos antiguos de jerga no deben reintroducirse por rutina.
+
 # fudiBOX · Dirección de marca 01
 
 Concepto: Fudi sale de la cocina y se convierte en el repa que conecta negocios locales y clientes. Cercano, alegre, capaz.

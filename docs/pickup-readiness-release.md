@@ -1,6 +1,6 @@
 # Pickup readiness release checklist — 21 October 2026
 
-Release authorized for the single main branch on 21 October 2026. Check Git/Vercel for the deployed commit.
+Published on the single main branch on 21 October 2026: functional commit ed3999f. Vercel reported success and the public site showed the approved branding. All 34 automated tests passed against https://fudibox.app after deployment. BETA: no restaurants operating; general reception stays closed. The hosted migration below remains unapplied.
 
 ## Compatibility before migration
 
@@ -8,7 +8,7 @@ The beta catalog reader retries the legacy projection only when a method column 
 
 The migration is still required before enabling and claiming the new database method guards. Compatibility in the reader does not replace that server-side migration or modify the hosted schema.
 
-## Database before application
+## Database migration before enabling orders
 
 1. Validate `202610210001_order_methods.sql` in an isolated database first. The migration adds `pickup_enabled=true`, `delivery_enabled=false`, preserves the overall reception switch, and enforces method gates in the order RPC and pilot visibility RPC.
 2. Back up the target schema/function definitions and record current restaurant reception values.
@@ -35,4 +35,4 @@ Rollback: first restore the previous application deployment, leaving the additiv
 
 ## Still separate
 
-Failed-pickup policies, post-completion corrections, weekly restaurant balances/payment recording, delivery workflow, and frontend redesign remain later milestones. Do not describe the candidate as generally open or financially reconciled.
+Failed-pickup policies, post-completion corrections, weekly restaurant balances/payment recording, delivery workflow, remain later milestones; the approved frontend refinement is already published. Do not describe the candidate as generally open or financially reconciled.

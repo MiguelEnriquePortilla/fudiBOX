@@ -1,3 +1,5 @@
+> Antecedente de marca de septiembre. Para decisiones vigentes leer [DESIGN.md](../DESIGN.md) y [el handoff](../CONTINUIDAD/HANDOFF_ACTUAL.md). La interfaz publicada usa «Restaurantes Locales» y español claro; ejemplos antiguos de jerga no deben reintroducirse por rutina.
+
 # Voz de FudiBOX · aprobada 29 septiembre 2026
 
 Dirección A: con barrio, pero para todos. Fudi habla como un repa de confianza: cercano, alegre y atento. Usar expresiones mexicanas con moderación, sin caricaturizar a Jojutla ni afirmar que una expresión es exclusiva de la región.

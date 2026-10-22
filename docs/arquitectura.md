@@ -1,28 +1,25 @@
-> Estado operativo actualizado: consultar [HOW-TO-GUIDE.md](HOW-TO-GUIDE.md). Este documento describe arquitectura objetivo; los pendientes historicos no reflejan la publicacion del 1 de octubre de 2026.
+# Arquitectura actual · 21 octubre 2026
 
-# Arquitectura objetivo
+Estado operativo: ../CONTINUIDAD/HANDOFF_ACTUAL.md. Beta publicada, recepción cerrada.
 
-Monolito modular: Next.js/TypeScript, PostgreSQL en Supabase, Auth, Storage y Realtime. Una fuente de verdad en servidor. WhatsApp es transporte manual de mensajes, no almacenamiento de estado ni prueba de recepción.
+Next.js 16.3.7 / React 19.3 / TypeScript 5.9.3, Supabase Auth/PostgreSQL y @supabase/ssr. Monolito con rutas cliente/servidor. Credenciales privilegiadas nunca llegan al navegador. Sesión verificada en servidor; RLS/RPC limitan lectura y mutaciones. Importes enteros en centavos, precios calculados en servidor y fotografía del pedido conservada.
 
-## Entidades
-users, businesses, memberships, products, inventory_reservations, orders, order_items, quotes, delivery_assignments, coordinators, drivers, order_events, ledger_entries, settlements.
+## Mapa de código
 
-## Invariantes
-- Importes enteros en centavos; precios y tarifa FudiBOX calculados por servidor.
-- Precio original de productos conservado en cada pedido.
-- Aceptación de cotización atómica, con reloj de servidor y límite estricto de 10 minutos.
-- Trabajo programado libera reservas vencidas incluso si nadie abre la web; cada mutación también verifica vencimiento.
-- Reintentos no duplican pedidos, cobros, reservas ni cierres.
-- Transferencia bloquea fila y cambia responsable sin modificar cotización.
-- Código de entrega generado criptográficamente, hash en base de datos, intentos limitados. Coordinador recibe validación, no acceso al código original.
-- Adeudo de 1000 centavos una sola vez por pedido completado. Reversos auditados.
-- Un pedido activo por repartidor, con restricción/transacción en base de datos.
-- Políticas RLS por cliente, negocio, coordinador responsable y administrador. Nunca confiar en selector visual de rol.
-- Enlaces de cliente autenticados o con token privado no predecible; ningún dato personal en URL pública.
-- Ubicación de recogida verificada por sucursal; cliente confirma pin de entrega y referencias. Ubicación GPS actual no equivale necesariamente a destino deseado.
+- src/app/page.tsx y layout.tsx: entrada, marca y metadatos.
+- src/app/chicanito/: catálogo de referencia, opciones y carrito.
+- src/app/restaurantes/[slug]/: catálogo por negocio.
+- src/lib/public-business.ts: lectura compatible con esquema antiguo; cierra recepción y modalidades ante columnas ausentes específicas.
+- src/app/cuenta/: pedidos del usuario, seguimiento y endpoint status.
+- src/app/admin/: operación autorizada y endpoint order-status.
+- supabase/migrations/: esquema, RLS y funciones transaccionales; un push no las instala.
+- tests/: unidades, HTTP, SQL y transporte visual aislado.
+- public/: recursos, manifiesto y soporte offline. No cachear datos privados ni reintentar compras offline.
 
-## Prototipo local
-HTML/CSS/JavaScript para validar el flujo sin herramientas de instalación. Persistencia localStorage y catálogo ficticio. Selector de roles únicamente de demostración. Temporizadores dependen del navegador; las reglas deben migrarse a servidor. No usar datos reales ni operar pedidos en él. Los enlaces WhatsApp se abren por acción expresa y requieren envío manual; el prototipo no incluye enlace público de seguimiento.
+## Capacidades y límites
 
-## Pendientes antes de operación
-Números de coordinadores, primer catálogo y dirección de negocio, cobertura, teléfonos reales, correo/dominio, credenciales de alojamiento, mecanismo de verificación de clientes, cancelaciones y ajustes, reservas concurrentes y notificaciones con web cerrada. Validar flujo real con conectividad irregular. Esa lista procede del dise?o hist?rico: la aplicaci?n ya est? desplegada, Google y el cat?logo est?n implementados. El estado vigente est? en CONTINUIDAD/HANDOFF_ACTUAL.md; los requisitos de la nueva versi?n est?n en docs/pickup-readiness-release.md.
+Recogida permite solicitud, confirmación de disponibilidad/preparación, listo y entrega manual. Reservas e idempotencia en base de datos; tarifa única de $10 al completar. No implica pago o liquidación. Seguimiento mediante consultas visibles cada 20 segundos, no Supabase Realtime ni push con app cerrada. WhatsApp es transporte manual, no fuente de estados.
+
+La migración 202610210001_order_methods.sql no está aplicada al alojamiento. Ver ../supabase/README.md. No atribuir a producción sus restricciones todavía.
+
+Cotizaciones, vencimientos programados, asignación de reparto, códigos, transferencias, liquidación y ajustes son objetivos pendientes. El prototipo HTML/localStorage en Documents/ChatGPT/fudiBOX es histórico y no forma parte de la arquitectura publicada. Arquitectura objetivo anterior archivada en ../CONTINUIDAD/sesiones/2026-10-21-antes-de-consolidar/arquitectura.md.

@@ -1,78 +1,71 @@
-# Beta: revisión de interfaz — 21 octubre 2026
+# Estado para retomar fudiBOX
 
-## Publicación autorizada
+Actualizado: **21 octubre 2026**. Frase de entrada: **Open fudiBOX Project**. Leer README.md y AGENTS.md. Este estado prevalece sobre sesiones anteriores.
 
-Miguel aprobó la interfaz y el cambio de marca a “Restaurantes Locales”; después autorizó commit y push a main. La pausa anterior queda revocada. Integrar en una sola rama main, sin PR ni rama remota adicional. Comprobar Git y la web para confirmar el commit publicado.
+## Decisiones y ubicación
 
-Se resolvió la compatibilidad con la base sin migración: readPublicBusiness conserva el catálogo y deshabilita ambas modalidades/recepción cuando faltan las columnas nuevas. No oculta otros errores ni anuncia piloto con recogida deshabilitada. La migración de modalidades sigue sin aplicar; no habilitar pedidos hasta aplicarla y verificarla. Build/TypeScript y las 34 pruebas pasaron en el servidor local usando el Supabase alojado real; cinco suites SQL aisladas también pasaron. No se crearon pedidos reales ni permisos.
+BETA sin restaurantes reales operando, según Miguel. Recepción general cerrada. Chicanito es referencia de desarrollo; antiguos pedidos/pruebas no establecen negocio activo.
 
-La integración se publica mediante Git/Vercel con configuración alojada, nunca mediante el build sintético de preview. Las notas anteriores de pausa y candidato de abajo se conservan como antecedentes.
+Sitio principal: https://fudibox.app. GitHub: https://github.com/MiguelEnriquePortilla/fudiBOX.git. Rama única main; Vercel publica sus pushes. Evitar crear ramas o PR por rutina.
 
-Miguel confirmó que fudiBOX sigue en BETA y no hay restaurantes reales operando. Prefiere conservar una sola rama al integrar. Después pidió pausar el commit/push para mejorar primero UI/UX con Impeccable y las skills oficiales de Emil Kowalski; aprobó la dirección visual y se implementó sin nuevos commits ni publicación.
+Principal local: C:/Users/hp/Desktop/FUDIGPT/fudiBOX. Worktree de apoyo: C:/Users/hp/Documents/ChatGPT/fudiBOX/pickup-readiness, sin rama propia tras integrar. Su padre es un prototipo histórico. Revisar Git antes de modificar; conservar archivos ignorados de entorno y herramientas.
 
-Trabajo preparado en C:/Users/hp/Documents/ChatGPT/fudiBOX/pickup-readiness, checkout enlazado del repositorio activo de Desktop; no es otra app del prototipo histórico. El hito funcional previo está en el commit local b50ba97; esta mejora visual está sin commit para revisión. Main y origin/main no recibieron esos cambios.
+Último cambio funcional publicado: ed3999ff87eef8203c8dc3da109aa28df195a394, «Polish beta UI and use Restaurantes Locales branding», incluye b50ba97 de controles/seguimiento. Rama temporal eliminada tras integración. Los commits posteriores de documentación no cambian ese identificador funcional.
 
-Interfaz: menú móvil en filas legibles, carrito inferior accesible y diálogos nativos con movimiento breve sólo al usar puntero. Sin solicitar datos personales cuando pedidos están cerrados. Cuenta prioriza seguimiento y errores sobre ajustes. Panel compacto con estados y detalles de monitoreo. Se conservan Fudi y la paleta aprobada. Dirección documentada en DESIGN.md.
+Texto aprobado «Restaurantes Locales», retirando «Restaurantes en Jojutla» de presentación general. Esto no modifica direcciones de negocio. Identidad aprobada: Fudi completo en motocicleta, patrón crema, petróleo/naranja, «La mesa está puesta.», español mexicano claro. Ver DESIGN.md.
 
-Build/TypeScript, 30 pruebas con backend local sintético y cinco suites SQL aisladas pasaron. Detector de Impeccable y revisión independiente sin hallazgos materiales pendientes. Evidencia y límites: docs/frontend-polish-verification.md. Preview local en puerto 3011 con fixture en 54329; nunca publicar el build de fixture.
+## Incidencia www detectada al cerrar
 
-Antes de retomar push: la consulta de Supabase del 21 octubre confirmó que pickup_enabled/delivery_enabled aún no existen. Aplicar la migración nueva de forma autorizada antes de publicar el código que las consulta, o preparar y verificar compatibilidad segura. No repetir migraciones antiguas ni abrir recepción. No hay herramienta Supabase conectada en esta sesión.
+Captura de Miguel: NET::ERR_CERT_COMMON_NAME_INVALID para https://www.fudibox.app. Comprobación externa Python con validación TLS el 21 octubre: https://fudibox.app responde 200; https://www.fudibox.app falla por hostname mismatch. No se corrigieron DNS ni certificados. Revisar asociación de www al proyecto, DNS esperado y emisión TLS; después redirigir a dominio principal. No desactivar validación ni pedir al usuario saltarse el aviso. La comprobación no determina por sí sola cuál registro DNS concreto está mal.
 
-La revisión visual fue aprobada; commit, merge y push están autorizados como indica la sección más reciente. Incidencias y conciliación son trabajo posterior. Los apartados de abajo son antecedentes del 9 octubre y no sustituyen estas instrucciones actuales.
+## Implementación actual
 
----
+Google, catálogo/opciones/carrito, cuenta /cuenta y administración /admin con autorización en servidor y RPC/RLS. Un negocio por pedido. Precios, reservas e idempotencia se comprueban en servidor.
 
-# Handoff vigente — cierre 9 octubre 2026
+Recogida: requested → preparing (operador confirma disponibilidad/estimación) → ready → delivered por confirmación manual. Sin código de entrega. Se registra servicio $10 una vez al completar y reservas consumidas sin segundo descuento. No certifica cobro ni liquidación. Cliente cancela sólo en requested/awaiting_quote/quoted; excepciones posteriores no implementadas.
 
-Miguel pidió cerrar esta sesión y continuar después. Este documento sustituye las instrucciones de próximos pasos de los antecedentes. No cerrar sesiones de Google/Supabase/Vercel ni cambiar recepción al retomar.
+Cliente: /cuenta/status devuelve sólo pedidos propios, conserva última lectura correcta ante fallos y descarta lecturas anteriores a cancelación, nuevas props o desmontaje. Errores de acción antes de la lista. Seguimiento antes de ajustes, pasos semánticos, dirección, estimación y desglose de importes.
 
-## Proyecto y acceso
-- Repositorio real: C:/Users/hp/Desktop/FUDIGPT/fudiBOX. Documents/ChatGPT/fudiBOX es histórico; no construir una segunda app ahí.
-- GitHub MiguelEnriquePortilla/fudiBOX, main, despliegue automático Vercel.
-- Tienda https://fudibox.app; panel https://fudibox.app/admin; cuenta /cuenta.
-- Dominio propio y Google funcionan. Supabase: aybgfwjbnsqbfnzmztmx; Site URL https://fudibox.app y callback /auth/callback autorizados. No reconfigurar OAuth sin un fallo demostrado.
-- Falta botón Mi panel en Mi cuenta visible solo para operadores: se propuso, NO se implementó. Acceso actual por /admin.
+Operador: /admin/order-status exige autorización (401/403/503), no-store. Consulta cada 20 segundos si visible, recuerda solicitudes vistas, sonido opcional sólo para nuevas y pausa al editar. Estado de última lectura, error, pausa y pestaña oculta. Esto no es notificación con móvil bloqueado/app cerrada.
 
-## Diseño aprobado: conservar
-Miguel aprobó por captura la portada final y dijo PERFECT. Fudi completo sobre moto al frente, fondo crema con íconos discretos de tacos, gorditas, quesadillas, pozole y pollo asado. Título: La mesa está puesta. Lenguaje natural de México, claro y directo; evitar qué onda, repa, machín, al tiro.
-- src/app/page.tsx y home.css: portada vigente.
-- public/assets/fudi-moto-v1.png: personaje aprobado, transparencia.
-- public/assets/platillos-pattern-crema-v2.png: fondo aprobado, CSS opacidad .42 con velo crema.
-- No volver a la foto de mesa ni al patrón naranja: fueron iteraciones descartadas, aunque los archivos se conservan.
-- docs/home-food-art.md conserva antecedentes y prompts. Imágenes son ilustrativas, no productos ofrecidos.
-- Último commit funcional: 287da2e; anterior 4f4e51e. Ambos recursos y su uso en producción comprobados por HTTP; captura final del usuario confirma apariencia.
+Catálogo móvil con filas y categorías horizontales, carrito inferior con espacio seguro; diálogos nativos de 240 ms por puntero, teclado inmediato, Escape/retorno de foco y reducción de movimiento. Carrito cerrado no solicita datos inútiles. No se animan listas/importes en cada consulta. Sin dependencias de animación nuevas.
 
-## Operación y pruebas reales
-- Recepción general continúa cerrada (accepting_orders=false). Domicilio, asignación de repartidor y validación por código pendientes. No habilitar apertura general automáticamente.
-- Un pedido real de recogida completado el 7 octubre: total $95, un cargo de servicio $10, un evento pickup_completed, cero reservas pendientes. Esto no acredita liquidación/pago al restaurante.
-- Piloto de Miguel consumido y vencido. No reutilizarlo automáticamente. Tabla privada pickup_pilots y RPC my_pickup_pilot, migración 202610060001 ya aplicada; no reaplicar migraciones anteriores.
-- Flujo: solicitado → confirmación manual del operador con restaurante → preparación → listo → entregado. Cada estado debe corresponder a hechos reales.
+WhatsApp abre borradores; el operador elige destinatario y envía. Repartidores son contactos. Sin enlace privado de aceptación para restaurante, cotización/aceptación/vencimiento de domicilio, asignación operativa, códigos, conciliación semanal ni registro de pagos.
 
-## Panel implementado
-- En curso / Historial, contadores, solicitados primero, recientes arriba dentro de cada estado.
-- Actualización cada 20 segundos solo con panel visible, se pausa al editar formulario. Actualizar pedidos permite reanudar.
-- Sonido activado mediante botón; Miguel confirmó escuchar el pitido de prueba. Falta comprobar aviso por llegada real de otro pedido. No son notificaciones push; no prometer avisos con app cerrada.
-- Preparar WhatsApp genera borrador con productos, opciones, notas e importes. Operador elige chat y envía. No hay envío automático, teléfono configurado del restaurante ni respuesta que cambie estados automáticamente.
-- Enlace privado para que restaurante acepte/marque listo solo se propuso; NO implementado.
+## Migración alojada pendiente
 
-## PWA
-Manifest, iconos, instalación y aviso offline publicados. Solo se guarda página genérica offline, no datos privados ni pedidos; no se reenvían compras. Chrome mostró Abrir en aplicación, pero instalación/apertura en Android e iPhone aún no fue verificada directamente.
+Supabase: aybgfwjbnsqbfnzmztmx. **202610210001_order_methods.sql NO aplicada al alojamiento.** Añade pickup_enabled=true/delivery_enabled=false, preserva recepción y restringe create_customer_order/my_pickup_pilot. Lectura alojada anterior al push: 42703 por pickup_enabled ausente. No había sesión/herramienta Supabase conectada para aplicarla.
 
-## Validación y límites
-- Build/TypeScript aprobados tras cambios funcionales y de portada. Último ajuste fue solo referencia y opacidad de fondo.
-- Suite de 14 pruebas aprobada: 11 HTTP contra producción y 3 locales (worker y mensajes). No confundir esas pruebas con pedido autenticado integral del panel nuevo.
-- Herramienta de navegador falló al iniciar runtime; revisión visual final proporcionada por Miguel. No inventar prueba automatizada de móvil/sonido.
-- PowerShell: usar OutputEncoding UTF8 al pasar Python por tubería para conservar acentos.
-- Node disponible en C:/Users/hp/AppData/Local/Programs/Python312/Lib/site-packages/playwright/driver/node.exe. Para pruebas HTTP usar TEST_BASE_URL y localhost en local (OAuth normaliza hostname).
-- Desktop repo puede requerir escalación por permisos; Documents es carpeta histórica de apoyo. No exponer secretos.
+src/lib/public-business.ts solicita campos nuevos; sólo ante 42703 que mencione pickup_enabled/delivery_enabled reintenta proyección antigua y fuerza accepting_orders=false, pickup_enabled=false y delivery_enabled=false. Otros errores se conservan. Ambas rutas de catálogo lo usan y ocultan piloto si recogida está deshabilitada. Cuatro pruebas cubren compatibilidad. Navegar con esquema antiguo no establece las nuevas restricciones SQL.
 
-## Próximo paso recomendado
-1. Retomar con una frase corta: diseño aprobado, pendiente prueba de pedido entrante en el nuevo panel.
-2. Resolver con Miguel si usa su cuenta o cliente invitado; quedó SIN respuesta. Preparar un único permiso de recogida para esa cuenta con caducidad y revisar pedido/importe antes de enviarlo. No crear pedido ni permiso ahora.
-3. Mantener panel visible con sonido, verificar llegada automática, borrador WhatsApp y estados hasta cierre conforme a operación real. Verificar un solo cargo y reserva liberada.
-4. Añadir acceso Mi panel solo para operadores y probar PWA en teléfono cuando Miguel lo indique. Decidir después si hace falta enlace sencillo del restaurante. No desarrollar otra app por anticipado.
+Un push no migra Supabase, concede permisos piloto ni abre recepción. No repetir migraciones históricas. Aplicar sólo la nueva mediante docs/pickup-readiness-release.md, verificar permisos y conservar recepción cerrada.
 
-## Forma de trabajar
-Mensajes cortos, pocos tokens, pasos pequeños. No repetir configuración ya comprobada. Usuario cerró la sesión; esperar que pida continuar.
+## Evidencia fechada del cierre funcional
 
-Antecedentes: sesiones/2026-10-09-antecedentes.md (históricos, pueden describir pendientes ya resueltos).
+- Build de producción y TypeScript correctos con configuración pública alojada.
+- 34 pruebas automatizadas pasaron localmente y de nuevo con TEST_BASE_URL=https://fudibox.app tras el despliegue.
+- Cinco suites SQL aisladas: order-transactions, pickup-ready, complete-pickup, pickup-pilot, order-methods. PostgreSQL/WASM sin leer .env ni conectarse a Supabase; no demuestra concurrencia multisesión real.
+- Revisión independiente sin problemas materiales restantes. Detector Impeccable limpio en marcado revisado. Se corrigió error de acción fuera de lugar y BOM en CSS.
+- Navegador 390/820/1280 px sin desbordamiento en catálogo/cuenta; opciones, carrito, vacío, teclado/Escape/foco y estados sintéticos largo/listo/cancelado/error. No compra enviada.
+- Estado público GitHub: Vercel success para ed3999f. HTML publicado mostró título y beta nuevos. Consulta de detalle Vercel devolvió 403 de alcance, no fallo de despliegue.
+- Sin migración alojada, altas piloto ni operaciones financieras realizadas en la sesión. Servidores de prueba detenidos al cierre; comprobar puertos antes de reutilizar.
+
+Estas comprobaciones son históricas fechadas; no implican repetición automática en una futura sesión. HTTP anónimo y fixtures no sustituyen recorrido autenticado ni teléfonos físicos.
+
+## Continuar
+
+Ver PLAN.md. Prioridades: incidencia www, migración controlada, soporte, políticas de no recogida/cancelación posterior/correcciones, prueba autenticada cliente-operador y Android/iPhone físicos. El sonido de una entrada real y segundo plano siguen sin comprobar. PWA tiene manifiesto/iconos/aviso offline; no almacena pedidos privados ni reenvía compras. Conciliación y domicilio requieren trabajo adicional.
+
+Al retomar, resumir brevemente y atender el trabajo que Miguel solicite sin repetir descubrimiento general. No abrir por cambiar un interruptor ni asumir definidas las incidencias.
+
+## Herramientas y entorno
+
+run-fudibox.ps1: dev/build/start/typecheck/test, descubre todos tests/*.test.mjs. Node alternativo: C:/Users/hp/AppData/Local/Programs/Python312/Lib/site-packages/playwright/driver/node.exe. Python: C:/Users/hp/AppData/Local/Programs/Python312/python.exe. Definir TEST_BASE_URL para HTTP; localhost preferible para OAuth. No rehacer Google ni cerrar sesiones sin fallo demostrado. .env.local y secretos permanecen fuera de Git; no imprimirlos.
+
+SQL: PGLITE_MODULE=.test-tools/pglite/package/dist/index.js (herramienta ignorada PGlite 0.5.11), ejecutar Node tests/run-sql.mjs. Runner sólo en memoria, no usa .env.
+
+Visual: tests/fixtures/read-only-backend.mjs en loopback54329 rechaza escrituras de negocio. FUDI_VISUAL_FIXTURE=1 carga catálogo grabado. fixture/session permite roles customer/operator y escenarios empty/cancelled/ready/long/error/checkout; sesiones falsas sólo válidas contra transporte falso. Preview de app usó localhost3011. Variables NEXT_PUBLIC_SUPABASE_URL=http://localhost:54329 y clave sb_publishable_fixture_only sólo para ese build local. Recompilar con configuración alojada antes de publicar; variables públicas se incorporan al build.
+
+Habilidades oficiales instaladas: Impeccable, Emil Kowalski (emil-design-eng, animate, mobile-native, review-animations), frontend-design y Superpowers. No hooks ni cambio de plataforma. Datos reales, mensajes y migraciones requieren el alcance/autorización correspondiente, no se derivan de abrir contexto.
+
+Actualizar este archivo y evidencia al cerrar. Antecedentes reemplazados: sesiones/2026-10-21-antes-de-consolidar/. No borrar historia ni usarla como estado vigente.

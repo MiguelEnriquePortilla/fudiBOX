@@ -1,60 +1,54 @@
-# fudiBOX
+# fudiBOX · Restaurantes Locales
 
-## Beta — publicación del 21 octubre 2026
+Actualizado: 21 octubre 2026. Para retomar: **Open fudiBOX Project**.
+Leer [AGENTS.md](AGENTS.md) y [CONTINUIDAD/HANDOFF_ACTUAL.md](CONTINUIDAD/HANDOFF_ACTUAL.md) antes de trabajar.
 
-Miguel autorizó integrar y publicar en una sola rama main. Interfaz refinada con Impeccable/Emil y marca “Restaurantes Locales”. Catálogo compatible con el esquema anterior: si faltan las columnas de modalidades, permite explorar pero mantiene pedidos cerrados. La migración nueva sigue pendiente antes de habilitar pedidos. Build/TypeScript, 34 pruebas y cinco suites SQL aisladas verificadas; ver docs/pickup-readiness-release.md y CONTINUIDAD/HANDOFF_ACTUAL.md. Los estados de candidato inferiores son antecedentes.
-Marketplace local para Jojutla y alrededores. Primer negocio: Chicken Chicanito.
+## Estado vigente
 
-## Manual de uso y pruebas
-[Guia por roles, altas y requisitos del piloto](docs/HOW-TO-GUIDE.md).
+**BETA, sin restaurantes reales operando. Recepción general de pedidos cerrada.** Chicanito y su catálogo son referencias de desarrollo. Los registros históricos no prueban operación comercial actual.
 
-Sitio publicado: https://fudibox.app. Dominio y Google comprobados el 7 de octubre de 2026. Recepcion general de pedidos cerrada.
+Publicado: https://fudibox.app (sin www). Último cambio funcional publicado: `ed3999f`, interfaz aprobada y texto «Restaurantes Locales». Repositorio: https://github.com/MiguelEnriquePortilla/fudiBOX. Rama única de trabajo: `main`; sus pushes publican automáticamente mediante Vercel. Un push no ejecuta migraciones de Supabase.
 
-## Estado
-Aplicación principal en C:/Users/hp/Desktop/FUDIGPT/fudiBOX. La carpeta Documents/ChatGPT/fudiBOX es histórica.
+El 21 de octubre se comprobó: dominio sin www devuelve 200; www.fudibox.app falla validación TLS por nombre de certificado incompatible. Pendiente corregir asociación/certificado/redirección del dominio www; no saltarse el aviso de Chrome.
 
-- Google funciona con la cuenta de Miguel; sesión verificada en servidor y aislamiento por RLS.
-- Menú real de 45 productos/presentaciones en /chicanito, opciones y carrito.
-- Panel central /admin para Miguel: restaurantes, menús, contactos de repartidores, cola de pedidos, historial, contadores, sonido opcional y borradores de WhatsApp. /negocio redirige a /admin.
-- Solicitud, reserva, confirmación y cancelación transaccionales implementadas.
-- Recogida: listo y cierre manual implementados, con cargo único de servicio. Ensayo real completado el 7 de octubre; recepción cerrada. Domicilio y validación por código pendientes.
-- Compilación correcta; 14 pruebas aprobadas (11 HTTP contra producción y 3 locales). Pruebas SQL de listo/cierre con rollback superadas. Falta probar llegada de un pedido en el panel nuevo.
-- Publicado en Vercel desde GitHub (main); un pedido real de recogida completado.
+## Ubicaciones
 
-Leer CONTINUIDAD/HANDOFF_ACTUAL.md antes de continuar.
+- Principal: `C:/Users/hp/Desktop/FUDIGPT/fudiBOX`.
+- Worktree de apoyo: `C:/Users/hp/Documents/ChatGPT/fudiBOX/pickup-readiness`. Comparte Git con el principal; quedó sin rama propia después de integrar. Comprobar HEAD y cambios antes de reutilizarlo.
+- El directorio padre `Documents/ChatGPT/fudiBOX` contiene un prototipo histórico. No es la aplicación publicada.
 
-## Ejecutar
-Con Node en PATH: npm install, npm run build y npm start.
-En este equipo: ./run-fudibox.ps1 build y ./run-fudibox.ps1 start.
-Abrir http://localhost:3000/chicanito o http://localhost:3000/admin.
-Mantener localhost durante OAuth.
-./run-fudibox.ps1 test ejecuta pruebas HTTP con servidor encendido.
-Las pruebas SQL están en tests/order-transactions.sql y revierten sus fixtures.
+## Disponible y pendiente
 
-.env.local contiene únicamente URL y clave publicable de Supabase; nunca guardar secretos Google ni service_role.
-Dependencias fijadas en package-lock.json. Node 24.18.1, Next.js 16.3.7.
+Disponible: catálogo/opciones/carrito, Google, cuenta cliente, seguimiento de recogidas y administración autorizada. Recogida: solicitud → preparación → listo → entrega confirmada manualmente por operador. Precios, reservas, permisos e idempotencia se validan en servidor. Se registra una tarifa de servicio de $10 una sola vez al completar; esto no certifica cobro ni liquidación.
 
-## Archivos
-- src/app/: portada, acceso, callback, cuenta, catálogo y panel.
-- src/lib/supabase/: clientes y configuración pública; src/proxy.ts: sesión y protección de caché.
-- supabase/migrations/: migraciones ya aplicadas; no repetir la inicial.
-- docs/chicanito-catalog-source.json: datos y observaciones de la fuente.
-- CONTINUIDAD/: estado y antecedentes.
-- index.html, app.js, styles.css y brand.css: prototipo histórico con localStorage, no operativo.
+Panel y cuenta consultan cada 20 segundos mientras están visibles. Sonido opcional en panel y WhatsApp manual. No hay notificaciones con app cerrada. Interfaz móvil, carrito inferior y diálogos refinados según [DESIGN.md](DESIGN.md).
 
-## Instalar como app
-Abrir https://fudibox.app y pulsar Instalar app. Android: Chrome, Instalar app. iPhone: Safari, Compartir > Agregar a pantalla de inicio. Requiere internet para pedidos; sin conexion muestra un aviso y no reenvia compras. Manifest, iconos y service worker incluidos. Prueba fisica en telefono pendiente.
+**Migración `202610210001_order_methods.sql` versionada, pero NO aplicada al Supabase alojado.** El lector de catálogo reconoce específicamente las columnas ausentes y cierra recepción/modalidades. Esa compatibilidad no instala las nuevas restricciones SQL.
 
-## Cierre del 9 de octubre de 2026
-- Diseño aprobado: Fudi completo en moto, fondo crema con íconos discretos de comida mexicana. Título: La mesa está puesta. Mantener lenguaje claro y natural.
-- Panel: En curso / Historial, actualización cada 20 segundos con página visible, pausa al editar, sonido opcional. Miguel confirmó el pitido de activación; llegada de pedido pendiente de prueba.
-- WhatsApp prepara un borrador; el operador elige destinatario y envía. No actualiza estados mediante respuestas.
-- Siguiente paso: elegir cuenta de prueba y autorizar un único pedido real de recogida; recepción general cerrada y permiso previo consumido. No habilitar automáticamente.
-- Pendientes: acceso Mi panel desde Mi cuenta para operadores, prueba de instalación móvil y posterior evaluación del enlace de restaurante.
-- Leer [handoff vigente](CONTINUIDAD/HANDOFF_ACTUAL.md) para retomar. No cerrar las sesiones de servicios.
+Antes de abrir: migración controlada, soporte, políticas de incidencias, recorrido autenticado y teléfonos físicos. Domicilio, códigos, conciliación, pagos y correcciones posteriores pendientes. [PLAN.md](PLAN.md).
 
-## Candidato de recogida ? 21 octubre 2026
+## Desarrollo
 
-Cambios en revisi?n en codex/pickup-readiness-20261021: controles separados de recogida/domicilio, seguimiento del cliente con consulta visible cada 20 segundos, Mi panel condicionado al permiso de operador y monitoreo con pausa, fallos y ?ltima lectura correcta. ./run-fudibox.ps1 test descubre toda la suite. Soporte sin contacto configurado sigue pendiente antes de abrir.
+Next.js 16, React 19, TypeScript y Supabase. Instalar dependencias del lockfile con `npm ci` cuando sea necesario. `.env.local` contiene configuración pública de Supabase y permanece fuera de Git. Nunca versionar claves privilegiadas ni secretos Google.
 
-Esta rama no est? publicada. La nueva migraci?n debe aplicarse antes de desplegarla; recepci?n general sigue cerrada. Consultar [release, pruebas y l?mites](docs/pickup-readiness-release.md). Incidencias, conciliaci?n y redise?o son hitos posteriores.
+```powershell
+./run-fudibox.ps1 dev
+./run-fudibox.ps1 build
+./run-fudibox.ps1 typecheck
+# Con servidor disponible:
+$env:TEST_BASE_URL='https://fudibox.app'
+./run-fudibox.ps1 test
+```
+
+El lanzador busca Node aunque no esté en PATH. Si PowerShell bloquea el archivo, usar `powershell -NoProfile -ExecutionPolicy Bypass -File ./run-fudibox.ps1 test`, sólo para ese proceso.
+
+Evidencia del cierre funcional del 21 de octubre: build y TypeScript correctos, 34 pruebas automatizadas también contra el sitio publicado y cinco suites SQL aisladas. No equivalen a un recorrido autenticado real, concurrencia entre sesiones ni pruebas físicas.
+
+## Documentación
+
+- [Estado para retomar](CONTINUIDAD/HANDOFF_ACTUAL.md): decisiones, herramientas, evidencia y límites.
+- [Guía de uso](docs/HOW-TO-GUIDE.md).
+- [Arquitectura](docs/arquitectura.md) y [Supabase](supabase/README.md).
+- [Publicación y migración pendiente](docs/pickup-readiness-release.md).
+- [Diseño aprobado](DESIGN.md) y [verificación visual](docs/frontend-polish-verification.md).
+- [Archivo de continuidad](CONTINUIDAD/README.md): antecedentes fechados, subordinados al estado vigente.
